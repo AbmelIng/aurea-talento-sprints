@@ -1,0 +1,35 @@
+<header class="toolbar">
+  <div class="brand"><span>Sistema RRHH</span><i aria-hidden="true"></i><strong>Aurea Talento</strong></div>
+  <span class="toolbar-label">Tablero de sprints</span>
+</header>
+<main class="container">
+  <div class="eyebrow">PLAN DE ENTREGA · FIRMA DE AUDITORÍA FINANCIERA</div>
+  <section class="intro"><div><h1>Sprints del proyecto</h1><p>Selecciona un sprint para explorar sus capacidades y criterios de aceptación.</p></div><div class="summary"><b>{{ total() }}</b><span>capacidades<br>planificadas</span></div></section>
+  <div class="legend"><span class="legend-dot"></span> Sprints 1–3: MVP <span class="legend-divider"></span> Sprints 4–10: ampliaciones</div>
+  <section class="sprint-grid" aria-label="Sprints del proyecto">
+    @for (sprint of sprints; track sprint.number) {
+      <button class="sprint-card" type="button" [class.active]="selectedSprint() === sprint.number" [class.mvp]="sprint.phase === 'MVP'" [attr.aria-pressed]="selectedSprint() === sprint.number" (click)="selectSprint(sprint.number)">
+        <span class="card-top"><span>SPRINT {{ sprint.number }}</span><small>{{ sprint.phase }}</small></span>
+        <strong>{{ sprint.title }}</strong><span class="card-description">{{ sprint.description }}</span>
+        <span class="count-pill">{{ forSprint(sprint.number).length }} capacidades</span>
+      </button>
+    }
+  </section>
+  <section class="story-section" aria-live="polite">
+    <div class="story-heading"><div><span class="section-kicker">{{ sprints[selectedSprint() - 1].phase }} · SPRINT {{ selectedSprint() }}</span><h2>{{ sprints[selectedSprint() - 1].title }}</h2><p>{{ visibleStories().length }} capacidades en este sprint. Abre una para ver sus criterios.</p></div><span class="story-count">{{ visibleStories().length }} / {{ total() }}</span></div>
+    @if (loadingError()) { <p class="notice">No se pudieron cargar las capacidades. Comprueba que stories.json esté publicado.</p> }
+    <div class="story-list">
+      @for (story of visibleStories(); track story.id) {
+        <article class="story" [class.open]="expandedStory() === story.id">
+          <button type="button" class="story-trigger" [attr.aria-expanded]="expandedStory() === story.id" [attr.aria-controls]="'detail-' + story.id" (click)="toggleStory(story.id)">
+            <span class="story-id">{{ story.id }}</span><span class="story-copy"><strong>{{ story.title }}</strong><span>{{ story.description }}</span></span><span class="expand-icon" aria-hidden="true">{{ expandedStory() === story.id ? '−' : '+' }}</span>
+          </button>
+          @if (expandedStory() === story.id) {
+            <div class="story-detail" [id]="'detail-' + story.id"><div class="detail-block"><h3>Criterios de aceptación propuestos</h3><ul>@for (criterion of story.criteria; track criterion) { <li>{{ criterion }}</li> }</ul></div><div class="detail-meta"><div><small>ÉPICA</small><b>EP-{{ story.epic.toString().padStart(2, '0') }}</b></div><div><small>PRIORIDAD EN EL MAPPING</small><b>{{ story.delivery }}</b></div><div><small>PUNTOS / RESPONSABLE</small><b>Por estimar · Por asignar</b></div></div></div>
+          }
+        </article>
+      }
+    </div>
+  </section>
+  <footer>Planificación académica · Sistema de RR. HH. para una firma de auditoría financiera en Guatemala</footer>
+</main>

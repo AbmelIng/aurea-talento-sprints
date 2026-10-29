@@ -1,0 +1,2554 @@
+[
+  {
+    "id": "HU-01-01",
+    "title": "Consultar el inicio personal",
+    "description": "Se muestra la identidad del empleado que inició sesión y solo la información a la que tiene acceso.",
+    "criteria": [
+      "Se muestra la identidad del empleado que inició sesión y solo la información a la que tiene acceso.",
+      "El inicio ofrece acceso directo a la solicitud de tiempo libre, a los saldos y a las solicitudes pendientes de atención del usuario.",
+      "Cuando no haya información para una sección, se muestra un estado vacío comprensible.",
+      "El contenido se presenta en español y las fechas se muestran en formato día/mes/año."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 1
+  },
+  {
+    "id": "HU-01-02",
+    "title": "Consultar saldos de tiempo libre",
+    "description": "Se muestran los tipos aplicables al empleado: vacaciones, enfermedad o cita médica, permiso personal, licencias legales, compensatorio y ausencia sin goce de sueldo. Maternidad se registra por RR. HH., no por autoservicio.",
+    "criteria": [
+      "Se muestran los tipos aplicables al empleado: vacaciones, enfermedad o cita médica, permiso personal, licencias legales, compensatorio y ausencia sin goce de sueldo. Maternidad se registra por RR. HH., no por autoservicio.",
+      "Para cada tipo se indica su unidad: vacaciones en días hábiles; permisos médico, personal y compensatorio en horas; licencias legales y ausencia sin goce en días; maternidad en días calendario.",
+      "En los tipos con cupo se distinguen **disponible**, **en trámite** y **programado**. Los tipos sin tope o sin saldo muestran un indicador de uso o registro, sin inventar un saldo disponible.",
+      "El saldo mostrado corresponde a una fecha de referencia identificable.",
+      "Las solicitudes pendientes reservan tiempo **en trámite** para evitar solicitar dos veces el mismo cupo. Al rechazarse o cancelarse, se libera; al aprobarse, pasa a programado."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 1
+  },
+  {
+    "id": "HU-01-03",
+    "title": "Consultar el detalle de un saldo",
+    "description": "Desde el resumen se puede abrir el detalle del tipo de ausencia seleccionado.",
+    "criteria": [
+      "Desde el resumen se puede abrir el detalle del tipo de ausencia seleccionado.",
+      "El detalle identifica las tres cifras aplicables, las ausencias próximas y los vencimientos del tipo seleccionado.",
+      "Los datos del resumen y del detalle usan la misma unidad y fecha de referencia.",
+      "Para vacaciones, el detalle permite distinguir períodos generados y excepciones autorizadas por RR. HH.; para compensatorios, la fecha de acreditación y vencimiento."
+    ],
+    "delivery": "Ampliación.",
+    "epic": 1
+  },
+  {
+    "id": "HU-01-04",
+    "title": "Registrar una solicitud de ausencia",
+    "description": "El formulario solicita fecha inicial, fecha final y tipo de ausencia; calcula y muestra la cantidad antes del envío y permite añadir una nota.",
+    "criteria": [
+      "El formulario solicita fecha inicial, fecha final y tipo de ausencia; calcula y muestra la cantidad antes del envío y permite añadir una nota.",
+      "Para vacaciones se cuentan días hábiles y se excluyen sábados, domingos y feriados aplicables. El cálculo usa el horario individual; los feriados corresponden a la sede base del empleado.",
+      "Se admite media jornada solo en vacaciones y permiso personal. En permisos por horas, la edición manual admite incrementos mínimos de media hora.",
+      "No se envía una solicitud si falta un dato obligatorio, la cantidad no es válida, la fecha final es anterior a la inicial o existe solapamiento que duplicaría tiempo ya solicitado.",
+      "El tiempo en trámite ya está reservado: una nueva solicitud no puede superar el saldo **disponible**, salvo adelanto de hasta cinco días de vacaciones autorizado por RR. HH.; el adelanto queda como saldo negativo y se descuenta del siguiente período. Los tipos sin cupo fijo no se bloquean por saldo.",
+      "Durante un período de bloqueo, las vacaciones requieren autorización especial antes de continuar.",
+      "Un permiso médico o por enfermedad que supera dos días requiere adjuntar constancia; solo el aprobador directo y RR. HH. pueden verla.",
+      "El empleado puede consultar las cifras disponible, en trámite y programado mientras prepara la solicitud.",
+      "Al enviarla, recibe una confirmación con los datos registrados y un identificador o referencia de la solicitud.",
+      "La solicitud se conserva una sola vez aunque el usuario intente enviarla repetidamente por error."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 1
+  },
+  {
+    "id": "HU-01-05",
+    "title": "Consultar ausencias programadas",
+    "description": "Se muestran únicamente las solicitudes **aprobadas** como ausencias programadas, con rango de fechas, tipo y cantidad.",
+    "criteria": [
+      "Se muestran únicamente las solicitudes **aprobadas** como ausencias programadas, con rango de fechas, tipo y cantidad.",
+      "Las entradas aparecen ordenadas por fecha.",
+      "Si no hay ausencias próximas, se indica de forma clara.",
+      "Solo se muestran ausencias del empleado que inició sesión, salvo permisos expresos para otros roles.",
+      "Una solicitud pendiente se muestra en trámite, sin mezclarse con las ausencias programadas; si se rechaza o cancela, deja de reservar tiempo."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 1
+  },
+  {
+    "id": "HU-01-06",
+    "title": "Consultar avisos y pendientes",
+    "description": "Cada elemento identifica su asunto, prioridad y, si corresponde, fecha límite o vigencia.",
+    "criteria": [
+      "Cada elemento identifica su asunto, prioridad y, si corresponde, fecha límite o vigencia.",
+      "Los avisos automáticos incluyen aprobaciones pendientes, saldos próximos a vencer y otras tareas habilitadas por las épicas correspondientes.",
+      "Los que requieren acción aparecen primero, ordenados por fecha límite próxima; después aparecen los informativos y generales del más reciente al más antiguo.",
+      "Los elementos que requieren acción ofrecen acceso a su contexto o función de origen.",
+      "Un aviso vencido deja de mostrarse y ninguno revela información fuera de los permisos del usuario."
+    ],
+    "delivery": "Avisos operativos de ausencia en la primera entrega; avisos de otras áreas en la ampliación.",
+    "epic": 1
+  },
+  {
+    "id": "HU-01-07",
+    "title": "Consultar el estado de mis solicitudes",
+    "description": "Cada solicitud muestra las fechas, el tipo, la cantidad y su estado actual.",
+    "criteria": [
+      "Cada solicitud muestra las fechas, el tipo, la cantidad y su estado actual.",
+      "Se admiten los estados **borrador** (si se habilita el guardado), **pendiente de aprobación**, **aprobada**, **rechazada**, **cancelada** y **disfrutada/cerrada**.",
+      "Una solicitud pendiente identifica el nivel de aprobación en que se encuentra. Una rechazada muestra el motivo proporcionado por quien decidió.",
+      "Cada cambio conserva fecha, usuario y estado anterior y nuevo; el empleado puede consultar ese historial según sus permisos.",
+      "Tras la aprobación final, la solicitud figura como ausencia programada. Después de la fecha de disfrute pasa a cerrada según la regla definida por RR. HH."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 1
+  },
+  {
+    "id": "HU-01-08",
+    "title": "Ver quién está ausente",
+    "description": "Se muestran personas ausentes agrupadas por fecha o periodo cercano.",
+    "criteria": [
+      "Se muestran personas ausentes agrupadas por fecha o periodo cercano.",
+      "El empleado ve solo su equipo o proyecto; supervisores y gerentes, su línea de reporte; socios y RR. HH., toda la firma.",
+      "Los responsables ven las solicitudes pendientes de su equipo con un indicador distinto de las aprobadas.",
+      "Para usuarios no autorizados se muestra solo «Ausente», «Permiso» o «Vacaciones». Los permisos médicos y licencias sensibles nunca muestran el motivo ni adjuntos en el calendario.",
+      "El supervisor aprobador puede consultar el tipo necesario para decidir, pero no diagnósticos ni detalles médicos; las constancias quedan restringidas al aprobador directo y RR. HH."
+    ],
+    "delivery": "Ampliación.",
+    "epic": 1
+  },
+  {
+    "id": "HU-01-09",
+    "title": "Consultar información de la empresa",
+    "description": "Se muestran cumpleaños y aniversarios generados automáticamente solo del equipo o sede. El empleado puede optar por no mostrar su cumpleaños.",
+    "criteria": [
+      "Se muestran cumpleaños y aniversarios generados automáticamente solo del equipo o sede. El empleado puede optar por no mostrar su cumpleaños.",
+      "Otros eventos personales se publican únicamente con consentimiento del empleado.",
+      "Se muestran enlaces configurados para el rol del empleado, agrupados por categoría y con un máximo aproximado de ocho a diez visibles.",
+      "Cada enlace lleva al recurso indicado y presenta una etiqueta clara.",
+      "Si una sección no tiene contenido, no impide utilizar las funciones principales del inicio."
+    ],
+    "delivery": "Complemento.",
+    "epic": 1
+  },
+  {
+    "id": "HU-01-10",
+    "title": "Acceder a resúmenes de otras áreas",
+    "description": "El inicio muestra solo los resúmenes de áreas habilitadas para el empleado.",
+    "criteria": [
+      "El inicio muestra solo los resúmenes de áreas habilitadas para el empleado.",
+      "Cada resumen permite ir al módulo donde se mantiene el dato completo.",
+      "El resumen y el módulo de origen muestran información coherente."
+    ],
+    "delivery": "Complemento.",
+    "epic": 1
+  },
+  {
+    "id": "HU-01-11",
+    "title": "Aprobar o rechazar solicitudes",
+    "description": "La ruta depende del tipo y duración: vacaciones de hasta cinco días hábiles, supervisor o gerente directo; más de cinco, gerente directo y después RR. HH.; permiso personal o médico, supervisor directo; licencia legal o maternidad, RR. HH. con aviso al supervisor; sin goce de sueldo, gerente, socio y RR. HH.",
+    "criteria": [
+      "La ruta depende del tipo y duración: vacaciones de hasta cinco días hábiles, supervisor o gerente directo; más de cinco, gerente directo y después RR. HH.; permiso personal o médico, supervisor directo; licencia legal o maternidad, RR. HH. con aviso al supervisor; sin goce de sueldo, gerente, socio y RR. HH.",
+      "Solo el nivel que está en turno puede decidir; cuando exista más de un nivel, la solicitud permanece pendiente hasta la última aprobación.",
+      "Rechazar exige un motivo y libera el tiempo en trámite. La aprobación final lo convierte en tiempo programado.",
+      "Cada gerente puede designar a su suplente. Si el aprobador está ausente, la solicitud pasa al suplente designado. Si transcurren tres días hábiles sin respuesta, se escala al siguiente nivel y queda constancia del evento.",
+      "El aprobador puede decidir desde la versión móvil con verificación en dos pasos.",
+      "Toda decisión conserva usuario, fecha, resultado y motivo cuando corresponda."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 1
+  },
+  {
+    "id": "HU-01-12",
+    "title": "Cancelar, anular o ajustar solicitudes",
+    "description": "El empleado puede cancelar una solicitud pendiente en cualquier momento y una aprobada hasta dos días hábiles antes del inicio.",
+    "criteria": [
+      "El empleado puede cancelar una solicitud pendiente en cualquier momento y una aprobada hasta dos días hábiles antes del inicio.",
+      "Después de ese plazo, solo RR. HH. puede anularla y debe registrar una justificación escrita.",
+      "Una solicitud enviada no se edita: para cambiarla se cancela y se crea otra. Si estaba aprobada, se revierte el tiempo programado antes de tramitar la nueva.",
+      "Una solicitud rechazada no descuenta saldo; el empleado puede crear otra.",
+      "RR. HH. puede hacer ajustes de saldo con justificación escrita. Cada operación conserva fecha, usuario, valor anterior y nuevo."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 1
+  },
+  {
+    "id": "HU-01-13",
+    "title": "Configurar políticas, feriados y bloqueos",
+    "description": "RR. HH. puede mantener feriados nacionales y locales; el cálculo usa los de la sede base del empleado.",
+    "criteria": [
+      "RR. HH. puede mantener feriados nacionales y locales; el cálculo usa los de la sede base del empleado.",
+      "RR. HH. puede configurar el horario individual, incluidos horarios rotativos, y definir períodos de bloqueo de vacaciones.",
+      "La política de vacaciones genera 15 días hábiles por año laboral cumplido desde el ingreso, admite como máximo dos períodos acumulados (30 días) y vence los saldos no usados a los dos años, salvo excepción autorizada por RR. HH.",
+      "El sistema avisa 60 días antes del vencimiento de vacaciones; los créditos compensatorios vencen a los seis meses de su generación.",
+      "El permiso personal dispone de 24 horas por año, sin acumulación. El permiso médico o por enfermedad no tiene tope fijo; si supera dos días exige constancia médica. Sus contadores anuales se reinician sin trasladar cupos al año siguiente.",
+      "RR. HH. puede acreditar horas compensatorias y autorizar hasta cinco días de adelanto de vacaciones; el adelanto se refleja como saldo negativo que se descuenta del siguiente período.",
+      "Toda modificación de política, saldo, feriado, horario o bloqueo conserva autor, fecha y valor anterior y nuevo."
+    ],
+    "delivery": "Primera entrega, con las reglas necesarias para habilitar el circuito de ausencias.",
+    "epic": 1
+  },
+  {
+    "id": "HU-01-14",
+    "title": "Administrar avisos y enlaces corporativos",
+    "description": "RR. HH., Gerencia General o Comunicación Interna pueden publicar avisos según sus permisos, dirigidos a toda la firma, un área, una sede o un rol.",
+    "criteria": [
+      "RR. HH., Gerencia General o Comunicación Interna pueden publicar avisos según sus permisos, dirigidos a toda la firma, un área, una sede o un rol.",
+      "Cada aviso tiene prioridad urgente, informativa o general y fecha de vigencia.",
+      "RR. HH., con apoyo de TI, mantiene enlaces agrupados por categoría y visibles según el rol; define su orden y limita el inicio a unos ocho a diez enlaces.",
+      "Comunicación Interna solo publica eventos personales distintos de cumpleaños o aniversarios cuando exista consentimiento del empleado."
+    ],
+    "delivery": "Ampliación. Los avisos automáticos indispensables para aprobar solicitudes y advertir vencimientos se incluyen en la primera entrega.",
+    "epic": 1
+  },
+  {
+    "id": "HU-01-15",
+    "title": "Usar las funciones esenciales desde el celular",
+    "description": "La versión web adaptable permite ver inicio, saldos y ausencias próximas; solicitar ausencias; consultar su estado; revisar avisos; y aprobar o rechazar cuando el usuario tiene ese permiso.",
+    "criteria": [
+      "La versión web adaptable permite ver inicio, saldos y ausencias próximas; solicitar ausencias; consultar su estado; revisar avisos; y aprobar o rechazar cuando el usuario tiene ese permiso.",
+      "Funciona con el mismo usuario corporativo y exige verificación en dos pasos a quienes aprueban solicitudes o consultan datos sensibles.",
+      "Las acciones principales siguen siendo utilizables con una conexión móvil lenta y no requieren instalar una aplicación nativa.",
+      "Los textos están en español y las fechas usan el formato día/mes/año."
+    ],
+    "delivery": "Primera entrega. Reportes, configuración de políticas y calendario, y vistas complejas de equipo pueden permanecer solo en escritorio.",
+    "epic": 1
+  },
+  {
+    "id": "HU-01-16",
+    "title": "Registrar una ausencia en nombre de un empleado",
+    "description": "RR. HH. puede seleccionar al empleado, el tipo, el periodo y la cantidad, con las mismas validaciones de calendario y horario aplicables.",
+    "criteria": [
+      "RR. HH. puede seleccionar al empleado, el tipo, el periodo y la cantidad, con las mismas validaciones de calendario y horario aplicables.",
+      "El registro identifica que fue creado por RR. HH. y conserva una justificación cuando corresponde.",
+      "La maternidad y los créditos compensatorios se registran por RR. HH.; el empleado no puede crearlos desde su formulario.",
+      "El registro actualiza las cifras y vistas correspondientes según su estado, sin duplicar tiempo."
+    ],
+    "delivery": "Primera entrega, junto con HU-01-13, para registrar maternidad, créditos compensatorios y otras ausencias que no se crean por autoservicio.",
+    "epic": 1
+  },
+  {
+    "id": "HU-02-01",
+    "title": "Consultar y filtrar vacantes",
+    "description": "El listado muestra al menos título, ubicación, responsable de contratación, fecha de creación y estado.",
+    "criteria": [
+      "El listado muestra al menos título, ubicación, responsable de contratación, fecha de creación y estado.",
+      "Se pueden distinguir y filtrar los estados borrador, pendiente de aprobación, aprobada, abierta, en pausa, cerrada, cubierta y cancelada.",
+      "La cantidad de postulaciones recibidas se muestra cuando exista ese dato y enlaza al proceso de EP-03.",
+      "El responsable de contratación ve las vacantes de su área y sus candidatos sin permiso para editar la publicación. RR. HH. accede conforme a su función; otros gerentes no ven los datos de candidatos de una vacante ajena."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-02",
+    "title": "Crear una vacante en borrador",
+    "description": "RR. HH. o un reclutador autorizado crea el borrador a partir de una requisición identificable; el borrador no aparece en el sitio público.",
+    "criteria": [
+      "RR. HH. o un reclutador autorizado crea el borrador a partir de una requisición identificable; el borrador no aparece en el sitio público.",
+      "El borrador conserva lo capturado aunque todavía falten datos exigidos para publicar.",
+      "Se registra quién lo creó y cuándo; solo RR. HH. o el reclutador autorizado pueden editarlo.",
+      "El reclutador puede volver al borrador desde el listado de vacantes."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-03",
+    "title": "Definir el contenido y la ubicación de la vacante",
+    "description": "Antes de solicitar aprobación se exigen título, área, responsable de contratación, tipo de empleo, nivel o categoría, número de plazas, experiencia mínima, descripción y responsabilidades, requisitos de formación y certificaciones, ubicación, modalidad y fecha límite de postulación.",
+    "criteria": [
+      "Antes de solicitar aprobación se exigen título, área, responsable de contratación, tipo de empleo, nivel o categoría, número de plazas, experiencia mínima, descripción y responsabilidades, requisitos de formación y certificaciones, ubicación, modalidad y fecha límite de postulación.",
+      "Los tipos de empleo contemplan tiempo completo, medio tiempo, plazo fijo y práctica profesional. Los niveles contemplan practicante, auditor junior, semi senior, senior, supervisor y gerente.",
+      "La ubicación utiliza país Guatemala, departamento, municipio y ciudad cuando corresponda; no exige estados, provincias ni códigos postales de otros países. Para una práctica profesional, la experiencia mínima se registra como «no requerida».",
+      "Se pueden registrar idiomas, disponibilidad para viajar y certificaciones deseables como datos opcionales.",
+      "Código de puesto, centro de costo, rango salarial interno, motivo de la plaza y nombre de la persona reemplazada, cuando aplique, permanecen internos y nunca aparecen en la página pública.",
+      "La compensación ofrecida por la firma no se publica; el formulario de postulación sí solicita la expectativa salarial del candidato."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-04",
+    "title": "Configurar preguntas y documentos estándar",
+    "description": "En todos los puestos son obligatorios nombre completo, correo, teléfono, municipio y departamento de residencia, currículum, formación académica, expectativa salarial y disponibilidad para iniciar.",
+    "criteria": [
+      "En todos los puestos son obligatorios nombre completo, correo, teléfono, municipio y departamento de residencia, currículum, formación académica, expectativa salarial y disponibilidad para iniciar.",
+      "Enlace profesional y carta de presentación son opcionales; las referencias laborales se solicitan después, durante la entrevista.",
+      "Para puestos técnicos se pueden pedir colegiado activo, certificaciones, nivel de inglés y disponibilidad para viajar. Para practicantes se puede pedir constancia universitaria y cierre de pensum, sin exigir experiencia. Los puestos administrativos y de apoyo usan los documentos mínimos definidos por RR. HH.",
+      "En la postulación inicial no se piden DPI, NIT, fotografía, estado civil, edad, religión ni datos de salud.",
+      "La configuración y el formulario público muestran las mismas etiquetas, condiciones por tipo de puesto y reglas de obligatoriedad."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-05",
+    "title": "Añadir preguntas personalizadas",
+    "description": "En la primera entrega se pueden crear preguntas de respuesta corta, sí/no y opción múltiple, incluidas preguntas filtro sobre colegiado activo o disponibilidad para viajar.",
+    "criteria": [
+      "En la primera entrega se pueden crear preguntas de respuesta corta, sí/no y opción múltiple, incluidas preguntas filtro sobre colegiado activo o disponibilidad para viajar.",
+      "Para cada pregunta se define el enunciado, las opciones cuando correspondan y si la respuesta es obligatoria.",
+      "La vista del candidato presenta la pregunta con el tipo de respuesta configurado y valida las obligatorias.",
+      "Las preguntas pertenecen a la vacante para la que fueron configuradas."
+    ],
+    "delivery": "Primera entrega. Respuesta larga, casilla y carga de archivo como tipos de pregunta personalizados pueden añadirse después; el currículum estándar sí admite archivo desde el inicio.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-06",
+    "title": "Reutilizar preguntas anteriores",
+    "description": "Se pueden buscar y seleccionar preguntas previamente utilizadas.",
+    "criteria": [
+      "Se pueden buscar y seleccionar preguntas previamente utilizadas.",
+      "Al incorporarlas a una vacante, se puede revisar su texto, tipo y obligatoriedad antes de publicar.",
+      "Cambiar una pregunta en la vacante actual no altera las postulaciones ya enviadas a otras vacantes."
+    ],
+    "delivery": "Ampliación.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-07",
+    "title": "Revisar la vacante antes de publicarla",
+    "description": "La revisión muestra el contenido público, la ubicación y todas las preguntas que responderá el candidato.",
+    "criteria": [
+      "La revisión muestra el contenido público, la ubicación y todas las preguntas que responderá el candidato.",
+      "El sistema señala campos requeridos incompletos antes de permitir la publicación.",
+      "El responsable de contratación puede revisar la vacante sin editar la publicación directamente; comunica correcciones a RR. HH.",
+      "RR. HH. puede volver al borrador y corregir el contenido antes de enviarlo a aprobación."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-08",
+    "title": "Publicar la vacante en el sitio de empleos",
+    "description": "La vacante pasa de borrador a pendiente de aprobación y luego a aprobada solo tras las decisiones exigidas en HU-02-13.",
+    "criteria": [
+      "La vacante pasa de borrador a pendiente de aprobación y luego a aprobada solo tras las decisiones exigidas en HU-02-13.",
+      "Solo RR. HH. puede cambiar de aprobada a abierta; no se publica una vacante incompleta ni pendiente de aprobación.",
+      "Al abrirla, el puesto y su formulario quedan accesibles en la página de empleos y mediante un enlace directo.",
+      "Las vacantes en borrador, pendientes o aprobadas aún no son públicas y no admiten postulaciones.",
+      "Se conserva quién aprobó y quién publicó, con las fechas correspondientes."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-09",
+    "title": "Compartir el enlace directo",
+    "description": "Se puede copiar un enlace que lleva a la vacante abierta correcta y un texto de publicación sin campos internos.",
+    "criteria": [
+      "Se puede copiar un enlace que lleva a la vacante abierta correcta y un texto de publicación sin campos internos.",
+      "El enlace refleja los cambios aprobados en la vacante propia.",
+      "Al cerrarse, cubrirse o cancelarse la vacante, el enlace muestra que ya no está disponible y ofrece consultar otras vacantes abiertas; no permite nuevas postulaciones."
+    ],
+    "delivery": "Primera entrega. La inserción en el sitio institucional se detalla en HU-02-17.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-10",
+    "title": "Difundir vacantes en portales externos",
+    "description": "Solo aparecen como seleccionables los portales que la organización tenga habilitados.",
+    "criteria": [
+      "Solo aparecen como seleccionables los portales que la organización tenga habilitados.",
+      "Antes de enviar, el reclutador conoce qué información se compartirá con cada portal.",
+      "El sistema informa si el envío fue aceptado, quedó pendiente o falló, sin presentar un fallo como publicación exitosa.",
+      "Se conserva qué canal se seleccionó y el resultado del intento de publicación."
+    ],
+    "delivery": "Futuro, sujeto a acuerdos y acceso a las API. En la primera entrega la difusión en LinkedIn, Computrabajo, Tecoloco y bolsas universitarias es manual y se cubre con HU-02-15.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-11",
+    "title": "Recibir una postulación",
+    "description": "La persona candidata ve la descripción del puesto y únicamente las preguntas configuradas para esa vacante.",
+    "criteria": [
+      "La persona candidata ve la descripción del puesto y únicamente las preguntas configuradas para esa vacante.",
+      "No puede enviar el formulario si falta una respuesta obligatoria, un archivo requerido o la aceptación obligatoria para tratar sus datos en ese proceso.",
+      "El formulario presenta el aviso de privacidad en español y una casilla **separada y opcional** para conservar datos con fines de futuras vacantes.",
+      "Solo acepta PDF, DOC o DOCX, hasta 5 MB por archivo y hasta tres archivos por postulación. Los archivos se revisan contra virus antes de quedar almacenados.",
+      "Se solicita que indique cómo se enteró de la vacante, para atribuir la fuente.",
+      "Si ya existe una postulación con el mismo correo para la misma vacante, el sistema no crea un duplicado y explica al candidato qué ocurrió.",
+      "Al enviarla, la postulación queda asociada a la vacante correcta y el candidato recibe un correo de confirmación con el nombre del puesto.",
+      "Solo RR. HH. y el responsable de contratación de esa vacante pueden consultar sus datos; se registra quién los consulta o exporta."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-12",
+    "title": "Actualizar o retirar una vacante",
+    "description": "RR. HH. edita una vacante abierta. Los cambios de requisitos, nivel, ubicación, modalidad o compensación interna requieren confirmación del responsable de contratación; una corrección menor no la requiere. Todos los cambios quedan registrados.",
+    "criteria": [
+      "RR. HH. edita una vacante abierta. Los cambios de requisitos, nivel, ubicación, modalidad o compensación interna requieren confirmación del responsable de contratación; una corrección menor no la requiere. Todos los cambios quedan registrados.",
+      "Una vacante en pausa sigue visible, pero no recibe nuevas postulaciones. Cerrada, cubierta o cancelada tampoco recibe postulaciones y muestra una indicación comprensible; el cierre registra motivo.",
+      "RR. HH. puede reabrir una vacante en pausa o cerrada, dejando usuario, fecha, motivo y cualquier cambio en la fecha límite.",
+      "Al llegar la fecha límite, el sistema avisa a RR. HH.; solo se cierra si RR. HH. lo confirma.",
+      "La vacante conserva el número total de plazas y muestra cuántas están pendientes, con oferta aceptada, en incorporación e incorporadas. Una plaza se considera cubierta cuando la persona se incorpora; la vacante queda cubierta cuando todas sus plazas lo están.",
+      "Una oferta aceptada o una plaza cubierta no cierra automáticamente la publicación; RR. HH. decide si la mantiene abierta, la pausa o la cierra desde el flujo de EP-03.",
+      "La página y el enlace propios reflejan los cambios de inmediato. Si hay portales externos registrados, se avisa a RR. HH. que podrían requerir una actualización o retirada manual.",
+      "Las postulaciones existentes siguen vinculadas. El sistema no notifica cambios a candidatos anteriores salvo que RR. HH. decida comunicar un cambio importante."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-13",
+    "title": "Solicitar y aprobar una requisición de vacante",
+    "description": "La requisición identifica puesto, área, responsable, justificación y si se trata de plaza nueva o reemplazo. Un reemplazo identifica internamente a la persona sustituida cuando corresponda.",
+    "criteria": [
+      "La requisición identifica puesto, área, responsable, justificación y si se trata de plaza nueva o reemplazo. Un reemplazo identifica internamente a la persona sustituida cuando corresponda.",
+      "El gerente o socio del área puede presentarla. RR. HH. o el reclutador autorizado prepara el borrador vinculado a esa requisición.",
+      "Para autorizar la publicación se requiere decisión del gerente del área solicitante y de RR. HH.; una plaza nueva requiere además la de un socio.",
+      "Mientras faltan decisiones, la vacante está pendiente de aprobación; al completarse, pasa a aprobada y queda lista para que RR. HH. la publique.",
+      "Cada decisión conserva autor, fecha y resultado; un rechazo devuelve la requisición o el borrador para corrección sin publicar la vacante."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-14",
+    "title": "Ofrecer una página pública de empleos",
+    "description": "La página pública pertenece al sistema, usa logo y colores de la firma, está en español y funciona en celular.",
+    "criteria": [
+      "La página pública pertenece al sistema, usa logo y colores de la firma, está en español y funciona en celular.",
+      "La lista pública muestra las vacantes abiertas y permite abrir una página específica por puesto.",
+      "Las vacantes abiertas y sus páginas pueden ser indexadas por motores de búsqueda; los estados internos y los campos reservados no se publican.",
+      "Una vacante en pausa puede verse desde su enlace, pero indica que temporalmente no recibe postulaciones. Una cerrada o cancelada informa que ya no está disponible y ofrece otras vacantes abiertas.",
+      "La página no depende de que el sitio institucional tenga una sección de empleos."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-15",
+    "title": "Registrar la difusión manual y la fuente de candidatos",
+    "description": "RR. HH. puede registrar canal, enlace externo cuando exista y fecha de publicación manual para cada vacante.",
+    "criteria": [
+      "RR. HH. puede registrar canal, enlace externo cuando exista y fecha de publicación manual para cada vacante.",
+      "Los canales iniciales contemplan LinkedIn, Computrabajo, Tecoloco, bolsas universitarias y otros que RR. HH. identifique. Las bolsas universitarias pueden gestionarse por correo.",
+      "El formulario de postulación pregunta al candidato cómo se enteró de la vacante y conserva la respuesta para reportes futuros.",
+      "Al actualizar una vacante abierta se muestran los canales registrados que podrían tener información desactualizada; al cerrarla o cancelarla se recuerda retirar los anuncios manuales.",
+      "El registro manual no presenta la publicación externa como una integración automática."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-16",
+    "title": "Conservar o eliminar datos de candidatos",
+    "description": "Se registra por separado la aceptación necesaria para el proceso actual y la autorización opcional para considerar al candidato en futuras vacantes.",
+    "criteria": [
+      "Se registra por separado la aceptación necesaria para el proceso actual y la autorización opcional para considerar al candidato en futuras vacantes.",
+      "Para candidatos no contratados sin autorización futura, los datos se eliminan o anonimizan a los 12 meses desde el cierre de la vacante. Con autorización futura, el máximo informado por el cliente es 24 meses.",
+      "Cuando un candidato es contratado, los datos pertinentes pasan al expediente del empleado según el flujo de EP-03 y EP-05; la conservación posterior sigue la política laboral aplicable.",
+      "RR. HH. puede registrar y atender una solicitud de eliminación, dejando fecha, responsable, decisión y resultado.",
+      "El acceso y la exportación de datos de candidatos quedan limitados a RR. HH. y al responsable de esa vacante; cada consulta o exportación deja una huella de auditoría.",
+      "Al cumplirse el plazo, el sistema identifica los registros que deben eliminarse o anonimizarse y deja constancia de la ejecución."
+    ],
+    "delivery": "Primera entrega para consentimiento, permisos y registro de accesos; la ejecución definitiva de plazos y eliminación depende de la revisión del asesor del cliente.",
+    "epic": 2
+  },
+  {
+    "id": "HU-02-17",
+    "title": "Insertar vacantes en el sitio institucional",
+    "description": "Se ofrece un mecanismo para insertar la lista pública de vacantes en el sitio institucional.",
+    "criteria": [
+      "Se ofrece un mecanismo para insertar la lista pública de vacantes en el sitio institucional.",
+      "La información proviene de la misma fuente que la página de empleos del sistema y respeta los estados de publicación.",
+      "Al pausar, cerrar o cancelar una vacante, el sitio institucional deja de ofrecer su postulación."
+    ],
+    "delivery": "Ampliación. El enlace directo de HU-02-09 cubre la difusión inicial.",
+    "epic": 2
+  },
+  {
+    "id": "HU-03-01",
+    "title": "Consultar candidatos por vacante",
+    "description": "Cada candidatura muestra nombre, vacante, fecha de postulación, etapa actual y fuente declarada en EP-02.",
+    "criteria": [
+      "Cada candidatura muestra nombre, vacante, fecha de postulación, etapa actual y fuente declarada en EP-02.",
+      "Se puede buscar por nombre y filtrar por vacante, etapa y estado activo o descartado.",
+      "El sistema alerta a RR. HH. si la persona participa en otra vacante o si fue contratada o descartada antes; el motivo anterior solo es visible para RR. HH.",
+      "Una misma persona puede participar en vacantes diferentes, pero cada candidatura mantiene su propio historial.",
+      "El responsable de contratación solo ve candidatos de sus vacantes; los entrevistadores adicionales únicamente ven las candidaturas que se les asignen.",
+      "Las consultas y exportaciones quedan registradas."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-02",
+    "title": "Revisar el perfil y los documentos",
+    "description": "La ficha presenta los datos, respuestas filtro y documentos enviados para la vacante correcta.",
+    "criteria": [
+      "La ficha presenta los datos, respuestas filtro y documentos enviados para la vacante correcta.",
+      "Se distinguen la información aportada por la persona candidata, las observaciones internas y los datos restringidos.",
+      "El responsable de contratación y RR. HH. pueden revisar CV y respuestas; la expectativa salarial mantiene la visibilidad establecida para el rol.",
+      "Los archivos conservan la validación de tipo, tamaño y antivirus definida en EP-02.",
+      "DPI, NIT, fotografía, estado civil, edad, religión y datos de salud no se incorporan como requisitos de revisión inicial."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-03",
+    "title": "Evaluar con rúbricas y notas",
+    "description": "La rúbrica se selecciona por grupo: técnico, practicante o administrativo y apoyo.",
+    "criteria": [
+      "La rúbrica se selecciona por grupo: técnico, practicante o administrativo y apoyo.",
+      "La rúbrica técnica contempla auditoría y contabilidad, NIIF, NIA, análisis, comunicación, inglés, criterio profesional y ética; la de practicantes contempla potencial, actitud, comunicación y fundamentos académicos; la administrativa contempla competencias del puesto, comunicación, orden y servicio.",
+      "Cada criterio usa escala de 1 a 5 con una descripción por nivel y una recomendación final: contratar con entusiasmo, contratar o no contratar.",
+      "Una calificación de 1 o 2 y la recomendación no contratar exigen comentario.",
+      "RR. HH. y el responsable de contratación ven todas las evaluaciones. El entrevistador solo ve la suya hasta enviarla; después puede ver el resumen consolidado únicamente si RR. HH. lo habilita.",
+      "Un entrevistador adicional no ve expectativa salarial ni notas ajenas. Su acceso se retira al cerrar la vacante.",
+      "Las notas son internas, se basan en la rúbrica y muestran guías de redacción profesional que evitan categorías sensibles o lenguaje inapropiado.",
+      "La configuración editable de criterios y descripciones por RR. HH. puede incorporarse en una ampliación; la primera entrega ofrece las tres rúbricas acordadas."
+    ],
+    "delivery": "Primera entrega; configuración avanzada en ampliación.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-04",
+    "title": "Gestionar las etapas y el descarte",
+    "description": "Las etapas activas son: Postulado, Revisión de CV, Preselección, Entrevista con RR. HH., Evaluación técnica, Entrevista con el área, Verificaciones, Oferta y Contratado.",
+    "criteria": [
+      "Las etapas activas son: Postulado, Revisión de CV, Preselección, Entrevista con RR. HH., Evaluación técnica, Entrevista con el área, Verificaciones, Oferta y Contratado.",
+      "Evaluación técnica puede omitirse para puestos administrativos y de apoyo. Retroceder una etapa exige justificación.",
+      "RR. HH. avanza al candidato hasta Evaluación técnica. Pasar a Verificaciones u Oferta requiere recomendación del responsable de contratación.",
+      "RR. HH. puede descartar hasta Entrevista con RR. HH. Desde Evaluación técnica, el responsable solicita el descarte y RR. HH. lo ejecuta.",
+      "Descartar exige un motivo del catálogo: no cumple requisitos, expectativa salarial, retiro del candidato, resultado de evaluación, independencia u otros. «Otros» permite comentario y nunca se admiten motivos basados en edad, género, religión u otras categorías sensibles.",
+      "El responsable recomienda. RR. HH. y el gerente del área toman la decisión; para puestos de supervisor en adelante, un socio la ratifica.",
+      "Cada transición conserva etapa anterior, etapa nueva, responsable, fecha y justificación o motivo cuando corresponda."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-05",
+    "title": "Agendar, reprogramar o cancelar entrevistas",
+    "description": "La agenda registra fecha, hora, modalidad, entrevistadores, enlace de videollamada o sala y candidatura asociada.",
+    "criteria": [
+      "La agenda registra fecha, hora, modalidad, entrevistadores, enlace de videollamada o sala y candidatura asociada.",
+      "Se puede reprogramar o cancelar, conservando el cambio y preparando un aviso para los participantes.",
+      "En la primera entrega, RR. HH. registra la agenda y envía o registra el aviso desde el flujo de comunicación.",
+      "En ampliación, el sistema envía invitaciones y archivos de calendario al candidato y entrevistadores; una integración con calendario corporativo es opcional.",
+      "Solo los entrevistadores asignados obtienen el acceso limitado definido en HU-03-03."
+    ],
+    "delivery": "Agenda en primera entrega; invitaciones automáticas e integración en ampliación.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-06",
+    "title": "Comunicarse con candidatos",
+    "description": "Los mensajes salen de un buzón institucional de selección; el nombre visible puede ser el del reclutador.",
+    "criteria": [
+      "Los mensajes salen de un buzón institucional de selección; el nombre visible puede ser el del reclutador.",
+      "Antes del envío se revisan destinatario, asunto, texto, adjuntos y candidatura asociada.",
+      "El reclutador puede ajustar invitaciones, solicitudes de documentos y avisos de avance. La oferta y el mensaje de descarte mantienen el texto aprobado.",
+      "Los adjuntos permitidos son PDF, DOC y DOCX, hasta 10 MB en total, con revisión antivirus.",
+      "La confirmación de postulación, el recordatorio 24 horas antes de la entrevista y el cierre por descarte pueden programarse automáticamente.",
+      "El correo de descarte queda programado durante un plazo de revisión de RR. HH. antes de enviarse y no comunica el motivo interno detallado.",
+      "Si el buzón conectado no está disponible al inicio, RR. HH. puede registrar una comunicación recibida por correo, llamada u otro canal con fecha, canal y resumen.",
+      "WhatsApp no se envía desde el sistema, aunque una conversación externa puede registrarse manualmente."
+    ],
+    "delivery": "Primera entrega con envíos y registro manual; recepción automática mediante buzón conectado en ampliación.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-07",
+    "title": "Consultar el historial de comunicaciones",
+    "description": "El historial muestra mensajes enviados, comunicaciones recibidas por el buzón conectado cuando exista y registros manuales de correo, llamada u otro canal.",
+    "criteria": [
+      "El historial muestra mensajes enviados, comunicaciones recibidas por el buzón conectado cuando exista y registros manuales de correo, llamada u otro canal.",
+      "Cada elemento identifica fecha, usuario o remitente, canal, asunto o resumen, adjuntos y resultado del envío cuando aplique.",
+      "Las comunicaciones registradas manualmente se distinguen de las sincronizadas.",
+      "Solo RR. HH. consulta el historial completo; cualquier acceso o exportación conserva trazabilidad.",
+      "El historial sigue la conservación aplicable a la candidatura."
+    ],
+    "delivery": "Primera entrega; sincronización del buzón en ampliación.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-08",
+    "title": "Preparar, versionar y aprobar una oferta",
+    "description": "La carta usa una plantilla aprobada por RR. HH. y Legal con nombre, puesto, nivel, fecha de ingreso, jefe directo, salario, bonos y tipo de contrato.",
+    "criteria": [
+      "La carta usa una plantilla aprobada por RR. HH. y Legal con nombre, puesto, nivel, fecha de ingreso, jefe directo, salario, bonos y tipo de contrato.",
+      "Los importes se expresan en quetzales. Puede mostrarse una referencia excepcional en dólares, pero el salario se fija en GTQ.",
+      "Puede incluir salario base mensual, bonificación incentivo, bonificación 14, aguinaldo, bono variable cuando aplique, beneficios, período de prueba y contrato indefinido o a plazo fijo.",
+      "El vencimiento predeterminado es de cinco días hábiles y RR. HH. puede ajustarlo.",
+      "Técnicos hasta semi senior y administrativos requieren aprobación del gerente del área y RR. HH.; senior y supervisor requieren además un socio; gerente en adelante requiere dos socios. Una oferta fuera del rango interno requiere aprobación adicional de un socio.",
+      "Solo RR. HH. envía una oferta aprobada.",
+      "Los estados son: en preparación, pendiente de aprobación, aprobada, enviada, aceptada, rechazada, vencida y retirada.",
+      "Cada versión se conserva. Cambiar salario, puesto, nivel u otro componente económico reinicia las aprobaciones; fecha de ingreso o corrección de redacción no las reinicia, pero deja registro."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-09",
+    "title": "Registrar la respuesta y las contraofertas",
+    "description": "La aceptación, rechazo o vencimiento se asocia a una versión enviada y registra fecha, usuario y evidencia.",
+    "criteria": [
+      "La aceptación, rechazo o vencimiento se asocia a una versión enviada y registra fecha, usuario y evidencia.",
+      "Una contraoferta registra la solicitud del candidato y da origen a una versión posterior sin borrar las anteriores.",
+      "Si una versión posterior cambia condiciones económicas, puesto o nivel, repite las aprobaciones de HU-03-08.",
+      "El vencimiento no se interpreta como aceptación y una contraoferta no convierte al candidato en contratado.",
+      "La oferta puede aceptarse con firma electrónica o enlace seguro; mientras esa función no esté disponible, RR. HH. puede cargar la carta firmada y escaneada."
+    ],
+    "delivery": "Primera entrega con carta escaneada; firma electrónica o enlace seguro en ampliación, sujeto a validación legal.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-10",
+    "title": "Registrar la contratación y transferir a EP-05",
+    "description": "La contratación identifica candidato, vacante, plaza, versión aceptada, fecha prevista de ingreso, responsables de la decisión y fecha.",
+    "criteria": [
+      "La contratación identifica candidato, vacante, plaza, versión aceptada, fecha prevista de ingreso, responsables de la decisión y fecha.",
+      "La autorización ocurre antes de enviar la oferta: RR. HH. y gerente del área, más los socios exigidos por nivel en HU-03-08.",
+      "EP-05 inicia cuando la oferta se acepta y no quedan verificaciones o declaración de independencia pendientes.",
+      "Si queda una verificación permitida en curso, la aceptación puede registrarse sujeta a condición y EP-05 puede iniciar, pero el ingreso no se confirma hasta resolverla. La independencia no puede quedar pendiente para emitir la oferta.",
+      "Se transfieren datos personales y de contacto, puesto, nivel, área, jefe, fecha de ingreso, salario aprobado, oferta final firmada, estado de verificaciones, salvaguardas de independencia y documentos entregados.",
+      "No se transfieren notas de entrevista ni calificaciones. De antecedentes y referencias pasa solo el resultado permitido, no el detalle.",
+      "Si la persona ya posee un expediente, el sistema alerta antes de crear otro."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-11",
+    "title": "Controlar las plazas y el estado de la vacante",
+    "description": "Cada vacante indica número total de plazas y conteos de pendientes, con oferta aceptada, en incorporación e incorporadas.",
+    "criteria": [
+      "Cada vacante indica número total de plazas y conteos de pendientes, con oferta aceptada, en incorporación e incorporadas.",
+      "Puede existir una oferta por plaza y varias ofertas simultáneas para una misma vacante.",
+      "Una oferta aceptada deja la plaza en proceso de incorporación; la plaza se considera cubierta cuando la persona se incorpora.",
+      "La vacante pasa a cubierta cuando todas sus plazas están cubiertas. Antes de eso puede permanecer abierta, pausarse o cerrarse por decisión expresa de RR. HH.",
+      "Si la persona no se incorpora, RR. HH. registra fecha y motivo, cancela el expediente iniciado en EP-05 y puede reabrir la plaza o retomar otra candidatura.",
+      "Al cerrar, cubrir o cancelar la vacante, el sistema recuerda actualizar o retirar los anuncios externos registrados en EP-02."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-12",
+    "title": "Resolver las candidaturas no seleccionadas",
+    "description": "El descarte conserva etapa, fecha, responsable y motivo interno del catálogo definido en HU-03-04.",
+    "criteria": [
+      "El descarte conserva etapa, fecha, responsable y motivo interno del catálogo definido en HU-03-04.",
+      "El mensaje externo usa texto aprobado, no revela notas ni el motivo interno y queda sujeto al plazo de revisión de RR. HH.",
+      "Cuando la vacante se cubre o cierra, los candidatos desde Entrevista con el área reciben comunicación personalizada de RR. HH.; los demás reciben el mensaje de cierre programado.",
+      "La decisión sobre una candidatura no cambia automáticamente las demás ni borra su historial.",
+      "Quienes autorizaron futuras vacantes pueden pasar al banco de talento; los demás siguen la política de conservación de EP-02 y HU-03-18."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-13",
+    "title": "Verificar independencia y conflictos de interés",
+    "description": "Todo personal técnico, incluidos practicantes de auditoría, completa la declaración amplia; administrativos y apoyo completan una declaración reducida de conflictos.",
+    "criteria": [
+      "Todo personal técnico, incluidos practicantes de auditoría, completa la declaración amplia; administrativos y apoyo completan una declaración reducida de conflictos.",
+      "La declaración técnica contempla intereses financieros en clientes, parentescos, empleo previo o actual en clientes o relacionadas, relaciones comerciales o préstamos y otros conflictos relevantes.",
+      "Se solicita después de Entrevista con el área y antes de emitir la oferta.",
+      "Cumplimiento / Independencia o un socio designado revisa el detalle con apoyo de RR. HH. El responsable de contratación solo ve el resultado.",
+      "Los resultados son: sin conflicto, conflicto manejable con salvaguardas o conflicto que impide la contratación.",
+      "No se emite una oferta mientras la declaración esté incompleta o sin revisar. Un conflicto impeditivo bloquea el avance y solo una decisión escrita de un socio puede levantarlo.",
+      "Las salvaguardas quedan registradas y, si se contrata, pasan al expediente de independencia en EP-05.",
+      "Toda consulta, modificación y resultado conserva trazabilidad."
+    ],
+    "delivery": "Primera entrega, sujeta a validación legal de contenido, acceso y conservación.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-14",
+    "title": "Administrar plantillas de comunicación",
+    "description": "Existen plantillas en español para confirmación de postulación, entrevista, solicitud de documentos o autorización, avance, cierre del proceso y oferta.",
+    "criteria": [
+      "Existen plantillas en español para confirmación de postulación, entrevista, solicitud de documentos o autorización, avance, cierre del proceso y oferta.",
+      "Solo RR. HH. edita las plantillas generales; se conserva quién cambió cada una y cuándo.",
+      "Antes de enviar se completan y revisan los datos variables obligatorios.",
+      "El reclutador puede ajustar el texto cuando la regla de HU-03-06 lo permita; oferta y descarte mantienen el contenido aprobado.",
+      "La firma puede activar el recordatorio automático de entrevista 24 horas antes."
+    ],
+    "delivery": "Plantillas base en primera entrega; administración avanzada y más automatizaciones en ampliación.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-15",
+    "title": "Aceptar y retirar ofertas de forma controlada",
+    "description": "El candidato puede aceptar mediante firma electrónica o enlace seguro cuando la solución esté habilitada; inicialmente se admite una carta firmada y escaneada cargada por RR. HH.",
+    "criteria": [
+      "El candidato puede aceptar mediante firma electrónica o enlace seguro cuando la solución esté habilitada; inicialmente se admite una carta firmada y escaneada cargada por RR. HH.",
+      "La evidencia se vincula al candidato, la vacante y la versión exacta de la oferta.",
+      "Retirar una oferta aceptada por decisión de la firma requiere aprobación de RR. HH. y un socio, motivo obligatorio y comunicación con texto aprobado por Legal.",
+      "Todo cambio de estado conserva usuario, fecha y versión.",
+      "La validez de la firma electrónica y la evidencia mínima se confirman con el asesor legal."
+    ],
+    "delivery": "Retiro controlado y carta escaneada en primera entrega; firma electrónica en ampliación.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-16",
+    "title": "Gestionar verificaciones del candidato",
+    "description": "Para técnicos se contemplan dos referencias laborales, certificaciones y colegiado cuando fueron declarados, títulos, antecedentes penales y policiacos, y revisión crediticia solo si manejan fondos o información sensible.",
+    "criteria": [
+      "Para técnicos se contemplan dos referencias laborales, certificaciones y colegiado cuando fueron declarados, títulos, antecedentes penales y policiacos, y revisión crediticia solo si manejan fondos o información sensible.",
+      "Para practicantes se contempla referencia académica, constancia de estudios y antecedentes. Para administrativos se contemplan referencias, estudios según el puesto, antecedentes y revisión crediticia cuando corresponda.",
+      "Antecedentes y revisión crediticia solo se solicitan después de Entrevista con el área y con autorización escrita del candidato.",
+      "Cada verificación registra tipo, estado pendiente, en curso, completada o con observaciones, responsable, fecha y resultado.",
+      "Solo RR. HH. ve hallazgos y documentos detallados. El resultado de antecedentes se evalúa según el puesto y no produce descarte automático.",
+      "Para una persona contratada, solo el estado o resultado permitido pasa a EP-05, sin trasladar el detalle restringido."
+    ],
+    "delivery": "Primera entrega, sujeta a validación legal de autorizaciones, fuentes, acceso y conservación.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-17",
+    "title": "Administrar un banco de talento",
+    "description": "Solo ingresan candidatos con la autorización opcional y separada de EP-02 vigente.",
+    "criteria": [
+      "Solo ingresan candidatos con la autorización opcional y separada de EP-02 vigente.",
+      "RR. HH. puede buscar por experiencia, formación, certificaciones y puestos de interés sin exponer notas o datos restringidos como criterio general.",
+      "Contactar a la persona para otra vacante crea o vincula una candidatura nueva y conserva el origen banco de talento.",
+      "Revocar la autorización o vencer su plazo retira el perfil del banco y activa el tratamiento definido en HU-02-16."
+    ],
+    "delivery": "Ampliación.",
+    "epic": 3
+  },
+  {
+    "id": "HU-03-18",
+    "title": "Conservar o eliminar datos de selección",
+    "description": "Para no contratados, notas y evaluaciones, referencias, ofertas no aceptadas y declaraciones de independencia se proponen por 12 meses desde el cierre de la vacante; comunicaciones siguen el plazo de la candidatura.",
+    "criteria": [
+      "Para no contratados, notas y evaluaciones, referencias, ofertas no aceptadas y declaraciones de independencia se proponen por 12 meses desde el cierre de la vacante; comunicaciones siguen el plazo de la candidatura.",
+      "Al cerrar una verificación de antecedentes o revisión crediticia, se elimina el documento o detalle y solo se conserva el resultado permitido: apto, apto con observaciones o no apto.",
+      "Para contratados, la oferta aceptada y los resultados permitidos pasan al expediente; la declaración de independencia pasa al expediente correspondiente y sigue la norma de la firma que valide el asesor.",
+      "RR. HH. registra y atiende solicitudes de eliminación. El plazo propuesto es 30 días, sujeto a validación legal.",
+      "Tras eliminar datos personales, puede conservarse un registro mínimo anonimizado de que existió una candidatura y su resultado para estadísticas y trazabilidad.",
+      "Si existe una obligación legal o disputa abierta, se retiene únicamente lo necesario, se documenta la excepción y se informa al solicitante según el procedimiento validado.",
+      "Se registra quién consultó, exportó o modificó evaluaciones, verificaciones, declaraciones y ofertas."
+    ],
+    "delivery": "Primera entrega para clasificación, permisos, trazabilidad y ejecución controlada; plazos y excepciones sujetos a validación legal.",
+    "epic": 3
+  },
+  {
+    "id": "HU-04-01",
+    "title": "Consultar y localizar empleados",
+    "description": "El listado permite buscar por nombre y filtrar por estado laboral, área, puesto, ubicación y responsable, si el usuario tiene acceso a esos campos.",
+    "criteria": [
+      "El listado permite buscar por nombre y filtrar por estado laboral, área, puesto, ubicación y responsable, si el usuario tiene acceso a esos campos.",
+      "Cada resultado muestra únicamente los datos permitidos para el rol que consulta.",
+      "Los empleados inactivos se distinguen de los activos y no aparecen por defecto en el directorio general.",
+      "Desde un resultado se puede abrir el perfil cuando el usuario tenga permiso.",
+      "La búsqueda no revela que existe un expediente cuando el usuario carece de acceso a esa persona o categoría."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-02",
+    "title": "Consultar el perfil de un empleado",
+    "description": "El perfil muestra una cabecera con nombre, puesto y datos organizativos permitidos.",
+    "criteria": [
+      "El perfil muestra una cabecera con nombre, puesto y datos organizativos permitidos.",
+      "Las secciones y campos visibles se adaptan al rol, a la relación con el empleado y al nivel de sensibilidad.",
+      "El empleado puede consultar sus propios datos con mayor detalle que los disponibles en el directorio.",
+      "Los datos restringidos, como identificación, compensación, información bancaria, médica o de emergencia, no aparecen por el simple hecho de poder abrir el perfil.",
+      "Desde el perfil se enlazan las áreas correspondientes del sistema sin duplicar historiales que pertenecen a otras épicas."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-03",
+    "title": "Crear y activar un expediente",
+    "description": "El expediente puede originarse en el traspaso de una contratación desde EP-03 y EP-05, o mediante un alta manual autorizada para migraciones y excepciones.",
+    "criteria": [
+      "El expediente puede originarse en el traspaso de una contratación desde EP-03 y EP-05, o mediante un alta manual autorizada para migraciones y excepciones.",
+      "Antes de crear, el sistema busca posibles duplicados mediante los identificadores definidos por la firma.",
+      "El alta registra un identificador interno único, datos personales mínimos, puesto, área, responsable, ubicación, fecha de contratación y estado laboral.",
+      "Los datos transferidos desde selección conservan su origen y no incluyen notas ni calificaciones de entrevistas.",
+      "La activación registra quién la realizó y cuándo; la creación del expediente no concede por sí sola acceso a todos los módulos.",
+      "Si faltan datos requeridos, el expediente puede quedar en preparación sin aparecer como empleado activo."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-04",
+    "title": "Mantener datos personales y de contacto",
+    "description": "Se pueden mantener los campos personales, de contacto y emergencia que el cliente confirme como necesarios.",
+    "criteria": [
+      "Se pueden mantener los campos personales, de contacto y emergencia que el cliente confirme como necesarios.",
+      "Cada campo aplica formato y obligatoriedad acordes con Guatemala y evita catálogos de otros países cuando no corresponden.",
+      "Los cambios sensibles registran valor anterior, valor nuevo, responsable, fecha y motivo cuando se exija.",
+      "El sistema diferencia datos legales, datos de uso cotidiano y datos visibles en el directorio.",
+      "Una modificación no sobrescribe el historial laboral que corresponde a EP-06."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-05",
+    "title": "Mantener datos laborales vigentes",
+    "description": "Se mantienen identificador, puesto, nivel, área, ubicación, responsable formal, tipo de empleo, fecha de contratación y estado laboral.",
+    "criteria": [
+      "Se mantienen identificador, puesto, nivel, área, ubicación, responsable formal, tipo de empleo, fecha de contratación y estado laboral.",
+      "Los cambios con fecha de vigencia actualizan la situación visible y generan el registro histórico correspondiente en EP-06.",
+      "Cambiar el responsable o el área actualiza el organigrama sin borrar la relación anterior.",
+      "Los datos de compensación y nómina permanecen restringidos aunque formen parte del expediente laboral.",
+      "El sistema advierte si el cambio dejaría una relación jerárquica circular o una unidad sin responsable cuando la política lo prohíba."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-06",
+    "title": "Configurar campos del expediente",
+    "description": "Un campo configurable define nombre, descripción, tipo de dato, obligatoriedad, sección, vigencia y nivel de sensibilidad.",
+    "criteria": [
+      "Un campo configurable define nombre, descripción, tipo de dato, obligatoriedad, sección, vigencia y nivel de sensibilidad.",
+      "Antes de publicarlo se definen quién puede verlo y quién puede editarlo.",
+      "Modificar o retirar un campo no elimina silenciosamente los datos existentes.",
+      "Los campos de texto libre incluyen instrucciones para evitar registrar información sensible sin una finalidad definida.",
+      "La creación y modificación de campos queda registrada."
+    ],
+    "delivery": "Ampliación.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-07",
+    "title": "Solicitar cambios en datos propios",
+    "description": "La firma define qué campos puede editar directamente el empleado y cuáles requieren solicitud y aprobación.",
+    "criteria": [
+      "La firma define qué campos puede editar directamente el empleado y cuáles requieren solicitud y aprobación.",
+      "Una solicitud muestra el valor propuesto, permite adjuntar el respaldo permitido y conserva su estado.",
+      "RR. HH. puede aprobar, rechazar o pedir corrección con una explicación registrada.",
+      "Un cambio aprobado actualiza el expediente y deja trazabilidad; uno rechazado no altera el dato vigente.",
+      "El empleado no puede solicitar mediante este flujo cambios de puesto, salario, nivel o responsable formal."
+    ],
+    "delivery": "Ampliación.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-08",
+    "title": "Consultar el directorio",
+    "description": "El directorio muestra únicamente empleados activos y los campos que la firma declare visibles, como nombre, puesto, área, correo corporativo y extensión.",
+    "criteria": [
+      "El directorio muestra únicamente empleados activos y los campos que la firma declare visibles, como nombre, puesto, área, correo corporativo y extensión.",
+      "Se puede buscar por nombre, puesto o área y abrir el perfil público interno permitido.",
+      "Teléfonos personales, domicilio, identificación, salario, datos bancarios, médicos y de emergencia no se publican en el directorio.",
+      "La visibilidad puede limitarse por grupo cuando exista una razón aprobada.",
+      "La consulta básica funciona en celular; las funciones adicionales de navegación móvil pueden ampliarse después."
+    ],
+    "delivery": "Primera entrega; experiencia móvil ampliada después.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-09",
+    "title": "Consultar el organigrama",
+    "description": "El organigrama parte de la relación formal de reporte y muestra nombre, puesto y unidad con el nivel de detalle permitido.",
+    "criteria": [
+      "El organigrama parte de la relación formal de reporte y muestra nombre, puesto y unidad con el nivel de detalle permitido.",
+      "Se puede buscar una persona y centrar la vista en su posición dentro de la estructura.",
+      "Se pueden expandir o contraer niveles sin cargar información de perfiles a los que el usuario no tiene acceso.",
+      "El número de reportes directos coincide con los expedientes activos relacionados.",
+      "Las asignaciones temporales a auditorías o clientes no sustituyen automáticamente al responsable formal."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-10",
+    "title": "Administrar unidades, puestos y líneas de reporte",
+    "description": "Se pueden crear, modificar, inactivar y consultar unidades organizativas y puestos sin perder referencias históricas.",
+    "criteria": [
+      "Se pueden crear, modificar, inactivar y consultar unidades organizativas y puestos sin perder referencias históricas.",
+      "Cada empleado activo puede tener un responsable formal según la regla que confirme la firma.",
+      "El sistema evita ciclos jerárquicos y advierte inconsistencias antes de publicar cambios.",
+      "Los cambios pueden tener fecha de vigencia y actualizan el perfil y organigrama cuando entra en vigor.",
+      "Las unidades y niveles utilizados aquí son consistentes con vacantes, aprobaciones, ausencias y reportes."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-11",
+    "title": "Registrar asignaciones a proyectos o clientes",
+    "description": "Una asignación identifica empleado, proyecto o compromiso, función, responsable, fechas y estado.",
+    "criteria": [
+      "Una asignación identifica empleado, proyecto o compromiso, función, responsable, fechas y estado.",
+      "La asignación no cambia el puesto, área ni responsable formal del expediente.",
+      "Solo usuarios autorizados consultan nombres de clientes o proyectos restringidos.",
+      "Al finalizar, el acceso asociado se retira según la política y la asignación queda en historial.",
+      "Antes de implementar esta historia, el cliente debe confirmar si las asignaciones se administrarán en RR. HH. o en otro sistema especializado."
+    ],
+    "delivery": "Ampliación por validar.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-12",
+    "title": "Asignar niveles de acceso",
+    "description": "Existen niveles base para empleado, responsable y RR. HH., además de niveles personalizados aprobados.",
+    "criteria": [
+      "Existen niveles base para empleado, responsable y RR. HH., además de niveles personalizados aprobados.",
+      "La asignación indica usuario, nivel, vigencia, responsable de autorización y motivo cuando corresponda.",
+      "El acceso de un responsable depende de su relación vigente con los empleados y no habilita automáticamente a toda la organización.",
+      "Ser administrador técnico no otorga automáticamente acceso a información salarial, médica, bancaria o de independencia.",
+      "Un cambio de puesto, área o estado puede generar una revisión de accesos pendientes."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-13",
+    "title": "Controlar el acceso por campo y relación",
+    "description": "Los permisos distinguen al menos ver, crear, editar, exportar y administrar para cada categoría de información.",
+    "criteria": [
+      "Los permisos distinguen al menos ver, crear, editar, exportar y administrar para cada categoría de información.",
+      "La decisión puede considerar si el usuario consulta sus propios datos, un reporte directo, una persona asignada o cualquier empleado.",
+      "Los campos personales, salariales, bancarios, médicos, de emergencia, de selección e independencia pueden tener controles distintos.",
+      "La interfaz no muestra acciones ni valores para los que el usuario carece de permiso.",
+      "Los permisos se prueban con una vista previa o usuario de prueba antes de activarse."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-14",
+    "title": "Otorgar acceso temporal o delegado",
+    "description": "La concesión identifica alcance, motivo, aprobador, fecha inicial y vencimiento obligatorio.",
+    "criteria": [
+      "La concesión identifica alcance, motivo, aprobador, fecha inicial y vencimiento obligatorio.",
+      "El sistema retira el acceso automáticamente al vencer y permite revocarlo antes.",
+      "Los accesos temporales a datos sensibles requieren la aprobación que defina la firma.",
+      "Toda consulta realizada durante la delegación se atribuye al usuario que actuó, no al aprobador.",
+      "Una delegación nunca permite conceder permisos superiores a los que el aprobador está autorizado a delegar."
+    ],
+    "delivery": "Ampliación.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-15",
+    "title": "Exportar el directorio o la estructura",
+    "description": "La exportación respeta los filtros actuales y únicamente incluye campos que el usuario puede exportar.",
+    "criteria": [
+      "La exportación respeta los filtros actuales y únicamente incluye campos que el usuario puede exportar.",
+      "Antes de generar el archivo se informa qué datos y cantidad de empleados se incluirán.",
+      "Los datos sensibles quedan excluidos de una exportación estándar del directorio.",
+      "Se registra quién exportó, cuándo, con qué filtros y qué categorías de datos.",
+      "La firma define los formatos permitidos y si el archivo requiere protección adicional."
+    ],
+    "delivery": "Ampliación.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-16",
+    "title": "Desactivar o reactivar un expediente",
+    "description": "Desactivar exige fecha efectiva, motivo y responsable, y retira al empleado del directorio activo según la fecha.",
+    "criteria": [
+      "Desactivar exige fecha efectiva, motivo y responsable, y retira al empleado del directorio activo según la fecha.",
+      "La desactivación inicia la revisión o revocación de accesos sin borrar el expediente ni sus referencias históricas.",
+      "Reactivar requiere verificar si corresponde al mismo expediente y evita crear un duplicado para una recontratación.",
+      "El sistema registra quién realizó cada acción y conserva los estados anteriores.",
+      "Las reglas de conservación posteriores a la salida se definirán con el cliente y su asesor."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 4
+  },
+  {
+    "id": "HU-04-17",
+    "title": "Auditar consultas y cambios",
+    "description": "La bitácora registra usuario, fecha y hora, empleado afectado, acción, categoría de dato y resultado.",
+    "criteria": [
+      "La bitácora registra usuario, fecha y hora, empleado afectado, acción, categoría de dato y resultado.",
+      "Para cambios se conservan valor anterior y nuevo cuando la política lo permita; secretos y documentos sensibles no se copian íntegramente a la bitácora.",
+      "Las consultas, exportaciones, cambios de permisos y accesos temporales a categorías sensibles dejan registro.",
+      "Solo roles expresamente autorizados consultan o exportan la bitácora, y esa consulta también queda registrada.",
+      "Los registros no pueden modificarse desde las funciones normales del sistema y siguen el plazo de conservación que se confirme."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 4
+  },
+  {
+    "id": "HU-05-01",
+    "title": "Iniciar una incorporación",
+    "description": "La incorporación se vincula a la persona, candidatura, oferta final, vacante y plaza correctas.",
+    "criteria": [
+      "La incorporación se vincula a la persona, candidatura, oferta final, vacante y plaza correctas.",
+      "Se reciben los datos permitidos por EP-03: datos personales y de contacto, puesto, nivel, área, jefe, fecha prevista, salario aprobado, oferta final, estados permitidos de verificaciones, salvaguardas y documentos.",
+      "No se transfieren notas, rúbricas ni calificaciones de selección.",
+      "Antes de iniciar, el sistema identifica un expediente existente o una incorporación activa para evitar duplicados.",
+      "Se registra quién inició el proceso, cuándo y la fecha prevista de ingreso.",
+      "El inicio de la incorporación no confirma que la persona ya se presentó a trabajar ni cubre definitivamente la plaza."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-02",
+    "title": "Controlar una incorporación condicionada",
+    "description": "La incorporación identifica cada verificación pendiente permitida, su responsable, estado y fecha límite.",
+    "criteria": [
+      "La incorporación identifica cada verificación pendiente permitida, su responsable, estado y fecha límite.",
+      "La declaración de independencia debe estar completa y resuelta antes de emitir la oferta, conforme a EP-03; no puede trasladarse como condición pendiente ordinaria.",
+      "El proceso puede avanzar en tareas preparatorias mientras una condición autorizada sigue en curso.",
+      "No se confirma el ingreso ni se activan accesos definitivos hasta que RR. HH. marque las condiciones obligatorias como resueltas.",
+      "Un resultado que impida el ingreso bloquea la activación y remite al flujo de retiro de oferta o cancelación definido en EP-03 y HU-05-16."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-03",
+    "title": "Aplicar una plantilla de incorporación",
+    "description": "La primera entrega ofrece plantillas base diferenciables por grupo, ubicación o tipo de empleo según lo que confirme el cliente.",
+    "criteria": [
+      "La primera entrega ofrece plantillas base diferenciables por grupo, ubicación o tipo de empleo según lo que confirme el cliente.",
+      "La plantilla genera tareas con responsable relativo, fecha calculada y condición de obligatoriedad.",
+      "RR. HH. revisa las tareas antes de activar el proceso y puede añadir una tarea específica con justificación.",
+      "Las tareas relacionadas con independencia, equipo, accesos, documentos y primer día pueden variar por perfil.",
+      "En ampliación, RR. HH. puede crear, versionar e inactivar plantillas sin alterar incorporaciones ya iniciadas."
+    ],
+    "delivery": "Plantillas base en primera entrega; administración configurable en ampliación.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-04",
+    "title": "Enviar el paquete de bienvenida",
+    "description": "El paquete muestra un saludo, puesto, fecha prevista de ingreso, responsable, instrucciones del primer día y tareas asignadas al nuevo empleado.",
+    "criteria": [
+      "El paquete muestra un saludo, puesto, fecha prevista de ingreso, responsable, instrucciones del primer día y tareas asignadas al nuevo empleado.",
+      "Incluye acceso seguro para completar datos y documentos sin requerir una cuenta laboral plenamente activa.",
+      "Antes de enviarlo, RR. HH. revisa destinatario, contenido, fecha y documentos visibles.",
+      "El sistema registra envío, entrega cuando pueda confirmarse y reenvíos.",
+      "El paquete está en español, funciona en celular y no revela información interna de la firma o de clientes que no corresponda al destinatario."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-05",
+    "title": "Completar datos personales",
+    "description": "El formulario solicita únicamente los campos definidos como necesarios para la incorporación en Guatemala.",
+    "criteria": [
+      "El formulario solicita únicamente los campos definidos como necesarios para la incorporación en Guatemala.",
+      "Los datos ya transferidos aparecen precargados cuando sea apropiado y la persona puede corregirlos o solicitar corrección.",
+      "Los campos aplican formato, obligatoriedad y explicación de finalidad.",
+      "La persona puede guardar un avance y conoce qué información falta.",
+      "Los datos bancarios, de identificación, emergencia u otras categorías sensibles tienen acceso restringido y no aparecen en tareas de usuarios no autorizados.",
+      "RR. HH. puede revisar el envío y resolver discrepancias antes de activar el expediente."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-06",
+    "title": "Completar la presentación personal",
+    "description": "La persona conoce qué respuestas o imagen se compartirán internamente y con qué audiencia.",
+    "criteria": [
+      "La persona conoce qué respuestas o imagen se compartirán internamente y con qué audiencia.",
+      "La fotografía y las respuestas de presentación son opcionales salvo que el cliente justifique otra regla.",
+      "Se muestra una vista previa antes de enviar y se permite corregir el contenido mientras el paquete esté abierto.",
+      "RR. HH. puede excluir contenido inapropiado sin modificar silenciosamente la respuesta original.",
+      "La presentación no solicita religión, salud, estado civil ni otras categorías sensibles que no sean necesarias."
+    ],
+    "delivery": "Primera entrega, sujeta a confirmación de campos y audiencia.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-07",
+    "title": "Entregar y validar documentos",
+    "description": "La lista identifica documento, finalidad, obligatoriedad, fecha límite, formatos y tamaño permitidos.",
+    "criteria": [
+      "La lista identifica documento, finalidad, obligatoriedad, fecha límite, formatos y tamaño permitidos.",
+      "El sistema acepta únicamente archivos permitidos, los revisa contra virus y cifra o protege su almacenamiento según la política técnica.",
+      "RR. HH. puede marcar un documento como pendiente de revisión, válido, rechazado o requiere corrección, con comentario visible para la persona cuando corresponda.",
+      "Cada nueva versión conserva fecha y responsable sin confundirla con la versión aceptada.",
+      "Los documentos de selección que ya fueron transferidos no se solicitan nuevamente si siguen siendo válidos.",
+      "La lista exacta de DPI, NIT, afiliaciones, información bancaria, constancias, contratos u otros documentos se confirma con RR. HH. y el asesor antes de implementarse."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-08",
+    "title": "Firmar o confirmar documentos",
+    "description": "Cada documento identifica versión, fecha, responsable emisor y acción requerida: lectura, confirmación o firma.",
+    "criteria": [
+      "Cada documento identifica versión, fecha, responsable emisor y acción requerida: lectura, confirmación o firma.",
+      "Antes de aceptar, la persona puede abrir o descargar la versión completa.",
+      "La evidencia queda vinculada a la persona y a la versión exacta.",
+      "En la primera entrega, RR. HH. puede cargar una versión firmada por el medio autorizado y registrar su validación.",
+      "La firma electrónica puede añadirse cuando se seleccione el mecanismo y se valide su uso; una simple casilla no se presenta como firma si no cumple la regla acordada.",
+      "Corregir un documento firmado genera una versión nueva y solicita una nueva aceptación cuando el cambio sea relevante."
+    ],
+    "delivery": "Alternativa manual controlada en primera entrega; firma electrónica en ampliación.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-09",
+    "title": "Asignar tareas de incorporación",
+    "description": "Cada tarea tiene título, descripción, responsable, fecha límite, dependencia, prioridad y evidencia requerida cuando aplique.",
+    "criteria": [
+      "Cada tarea tiene título, descripción, responsable, fecha límite, dependencia, prioridad y evidencia requerida cuando aplique.",
+      "Se pueden asignar tareas a RR. HH., TI, jefatura, Administración, Nómina, Cumplimiento y nuevo empleado según sus permisos.",
+      "Una persona solo ve la información necesaria para cumplir su tarea; asignarle una tarea no concede acceso al expediente completo.",
+      "Las tareas pueden calcularse respecto de la fecha prevista de ingreso y actualizarse de forma controlada si esta cambia.",
+      "Las tareas obligatorias se distinguen de las recomendadas."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-10",
+    "title": "Atender tareas asignadas",
+    "description": "Cada usuario ve sus tareas pendientes, próximas, vencidas y completadas.",
+    "criteria": [
+      "Cada usuario ve sus tareas pendientes, próximas, vencidas y completadas.",
+      "Una tarea puede requerir comentario, archivo o confirmación antes de completarse.",
+      "Completarla registra usuario y fecha; reabrirla exige motivo y deja historial.",
+      "Las dependencias impiden marcar como final una tarea cuyo requisito previo obligatorio sigue pendiente.",
+      "El nuevo empleado puede realizar sus tareas esenciales desde un celular."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-11",
+    "title": "Consultar el avance y los bloqueos",
+    "description": "El resumen muestra porcentaje o conteo de tareas completadas, pendientes, vencidas y bloqueadas por responsable o área.",
+    "criteria": [
+      "El resumen muestra porcentaje o conteo de tareas completadas, pendientes, vencidas y bloqueadas por responsable o área.",
+      "Las condiciones de contratación pendientes se distinguen de las tareas administrativas.",
+      "RR. HH. puede abrir el detalle de una tarea sin recibir acceso a documentos reservados para otra función cuando no corresponda.",
+      "El responsable directo consulta el avance necesario para preparar el ingreso, sin ver datos bancarios, identificación ni documentos restringidos.",
+      "El sistema destaca los bloqueos que impiden confirmar el ingreso."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-12",
+    "title": "Recordar y escalar tareas vencidas",
+    "description": "La firma puede definir recordatorios antes y después de la fecha límite para responsables y nuevo empleado.",
+    "criteria": [
+      "La firma puede definir recordatorios antes y después de la fecha límite para responsables y nuevo empleado.",
+      "Un recordatorio identifica la tarea y la acción requerida sin incluir información sensible innecesaria en el correo.",
+      "Las tareas críticas vencidas pueden escalarse a RR. HH. y al responsable funcional acordado.",
+      "Posponer, reasignar o dispensar una tarea obligatoria exige motivo y queda registrado.",
+      "Las reglas definitivas de escalamiento y tratamiento de tareas vencidas se validan con el cliente."
+    ],
+    "delivery": "Recordatorios básicos en primera entrega; reglas configurables e integraciones en ampliación.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-13",
+    "title": "Preparar cuentas, equipo y accesos",
+    "description": "Las tareas pueden incluir correo, cuenta de red, aplicaciones, equipo, credencial, espacio y otros recursos definidos por perfil.",
+    "criteria": [
+      "Las tareas pueden incluir correo, cuenta de red, aplicaciones, equipo, credencial, espacio y otros recursos definidos por perfil.",
+      "Cada acceso se basa en el puesto, nivel, área y salvaguardas de independencia autorizadas.",
+      "Los accesos definitivos no se activan antes de la fecha o condición aprobada.",
+      "La tarea registra recurso, responsable, estado, fecha y evidencia o identificador permitido.",
+      "Las credenciales y contraseñas no se guardan en comentarios de tareas.",
+      "En la primera entrega se controla la tarea; la creación automática de cuentas o integración con inventario queda para ampliación."
+    ],
+    "delivery": "Primera entrega para coordinación; automatización en ampliación.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-14",
+    "title": "Preparar el primer día",
+    "description": "Se registran modalidad, lugar o enlace, hora, contacto de recepción y agenda inicial.",
+    "criteria": [
+      "Se registran modalidad, lugar o enlace, hora, contacto de recepción y agenda inicial.",
+      "El responsable puede asignar una persona de apoyo o acompañamiento cuando la firma use esa práctica.",
+      "Se pueden incluir presentación del equipo, inducción, entrega de equipo y capacitaciones iniciales sin duplicar el seguimiento detallado que corresponde a EP-07.",
+      "Los datos de clientes o proyectos solo se muestran si el acceso ya fue autorizado.",
+      "Los cambios relevantes se comunican al nuevo empleado y quedan registrados."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-15",
+    "title": "Confirmar el ingreso y activar el expediente",
+    "description": "RR. HH. confirma la fecha real de ingreso mediante una acción expresa.",
+    "criteria": [
+      "RR. HH. confirma la fecha real de ingreso mediante una acción expresa.",
+      "La confirmación solo se permite cuando las condiciones que bloquean el ingreso están resueltas o existe una excepción aprobada y registrada.",
+      "El expediente de EP-04 pasa a activo y conserva la relación con la oferta y la incorporación.",
+      "EP-03 recibe la incorporación efectiva para marcar la plaza como cubierta y recalcular el estado de la vacante.",
+      "Las tareas posteriores al primer día pueden permanecer abiertas sin impedir la confirmación si no son bloqueantes.",
+      "Se registra quién confirmó, cuándo y cualquier diferencia respecto de la fecha prevista."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-16",
+    "title": "Cancelar una incorporación no completada",
+    "description": "La cancelación exige fecha, motivo, responsable y referencia a la decisión o autorización correspondiente.",
+    "criteria": [
+      "La cancelación exige fecha, motivo, responsable y referencia a la decisión o autorización correspondiente.",
+      "Si la firma retira una oferta aceptada, se exige la aprobación de RR. HH. y un socio y se usa el texto aprobado por Legal, conforme a EP-03.",
+      "Si la persona se retira o no se presenta, RR. HH. registra el hecho y la fecha.",
+      "El expediente en preparación se cancela o inactiva sin borrar el historial; se revocan invitaciones, accesos preparados y tareas que ya no proceden.",
+      "EP-03 recibe el resultado para reabrir la plaza o retomar otra candidatura.",
+      "La conservación de documentos y comunicaciones sigue las reglas aplicables de EP-03 y la política laboral que se confirme."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 5
+  },
+  {
+    "id": "HU-05-17",
+    "title": "Proteger y auditar datos de incorporación",
+    "description": "Cada categoría de dato o documento define quién puede consultar, validar, modificar, descargar o exportar.",
+    "criteria": [
+      "Cada categoría de dato o documento define quién puede consultar, validar, modificar, descargar o exportar.",
+      "RR. HH., Nómina, TI, jefatura y Cumplimiento reciben únicamente la información necesaria para su tarea.",
+      "Las consultas, descargas, validaciones, cambios, firmas y exportaciones sensibles dejan usuario, fecha, acción y resultado.",
+      "Los enlaces del paquete vencen o pueden revocarse y no permiten acceder a otra incorporación.",
+      "Los archivos rechazados, reemplazados o de una incorporación cancelada siguen la conservación que confirme el cliente; no se eliminan ni conservan indefinidamente sin una regla.",
+      "La bitácora no copia íntegramente documentos, credenciales o valores sensibles."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 5
+  },
+  {
+    "id": "HU-06-01",
+    "title": "Consultar las condiciones laborales vigentes",
+    "description": "La consulta identifica puesto, nivel, área, responsable, ubicación, jornada, modalidad, tipo de vinculación y fecha de vigencia.",
+    "criteria": [
+      "La consulta identifica puesto, nivel, área, responsable, ubicación, jornada, modalidad, tipo de vinculación y fecha de vigencia.",
+      "La compensación solo aparece para el empleado y los roles expresamente autorizados.",
+      "Los datos se obtienen de registros vigentes de EP-04 y EP-06, sin mantener copias contradictorias.",
+      "Las condiciones futuras se distinguen claramente de las que ya están vigentes.",
+      "La pantalla indica la fecha de última actualización y la fuente del cambio."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-02",
+    "title": "Consultar el historial laboral",
+    "description": "El historial ordena los cambios por fecha efectiva y permite filtrar por tipo de condición.",
+    "criteria": [
+      "El historial ordena los cambios por fecha efectiva y permite filtrar por tipo de condición.",
+      "Cada registro muestra valor anterior, valor nuevo, motivo permitido, responsable y estado del cambio.",
+      "Las correcciones se distinguen de promociones, traslados, ajustes salariales y otros movimientos reales.",
+      "Un empleado consulta su propio historial dentro de la política; los responsables solo ven el alcance autorizado.",
+      "El historial no revela comentarios internos, aprobaciones o compensación a usuarios sin permiso."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-03",
+    "title": "Registrar cambios de puesto, nivel o área",
+    "description": "El cambio identifica persona, condición anterior, nueva condición, fecha efectiva, motivo y solicitante.",
+    "criteria": [
+      "El cambio identifica persona, condición anterior, nueva condición, fecha efectiva, motivo y solicitante.",
+      "El puesto, nivel y área seleccionados provienen de catálogos vigentes de EP-04.",
+      "Una promoción, traslado o cambio lateral conserva su clasificación sin inferirla solamente por el título del puesto.",
+      "El sistema advierte si el movimiento entra en conflicto con otro cambio programado.",
+      "La aplicación del cambio actualiza la condición vigente y conserva el registro anterior."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-04",
+    "title": "Registrar cambios de responsable o ubicación",
+    "description": "El registro identifica responsable formal, ubicación anterior, nuevos valores y fecha efectiva.",
+    "criteria": [
+      "El registro identifica responsable formal, ubicación anterior, nuevos valores y fecha efectiva.",
+      "El cambio de responsable actualiza el organigrama de EP-04 cuando entra en vigor.",
+      "El sistema evita líneas de reporte circulares y responsables inactivos.",
+      "Una asignación temporal a proyecto o cliente no reemplaza al responsable laboral salvo decisión expresa.",
+      "Los cambios masivos requieren vista previa y confirmación antes de aplicarse."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-05",
+    "title": "Registrar estado, modalidad y tipo de vinculación",
+    "description": "El sistema distingue estados como activo, licencia, suspendido, finalizado y otros confirmados por la firma.",
+    "criteria": [
+      "El sistema distingue estados como activo, licencia, suspendido, finalizado y otros confirmados por la firma.",
+      "La vinculación puede registrar tiempo completo, medio tiempo, plazo fijo, práctica profesional o prestación de servicios, según los catálogos aprobados.",
+      "Para trabajo por hora o por proyecto se registran unidad de pago, vigencia y reglas aplicables sin asumir que existe una relación laboral.",
+      "Los prestadores de servicios no reciben automáticamente beneficios, ausencias o acceso a nómina propios de empleados.",
+      "La clasificación y sus efectos deben ser validados por RR. HH., Finanzas y los asesores correspondientes."
+    ],
+    "delivery": "Primera entrega, sujeta a validación legal y tributaria.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-06",
+    "title": "Registrar cambios de compensación",
+    "description": "El registro identifica moneda, modalidad de pago, monto, periodicidad, componentes y fecha efectiva.",
+    "criteria": [
+      "El registro identifica moneda, modalidad de pago, monto, periodicidad, componentes y fecha efectiva.",
+      "Se contemplan salario mensual, tarifa por hora u honorario por proyecto únicamente cuando correspondan a la vinculación configurada.",
+      "Los valores se almacenan en quetzales, salvo una excepción autorizada e identificada.",
+      "La compensación anterior permanece en el historial y no se muestra en el directorio general.",
+      "Registrar una condición económica no ejecuta por sí mismo el cálculo ni el pago de nómina."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-07",
+    "title": "Programar cambios con fecha efectiva",
+    "description": "Un cambio aprobado puede quedar programado para una fecha futura.",
+    "criteria": [
+      "Un cambio aprobado puede quedar programado para una fecha futura.",
+      "El sistema impide vigencias superpuestas para la misma condición o solicita resolver el conflicto.",
+      "Antes de la fecha efectiva se muestra como futuro y no sustituye el valor actual.",
+      "Al entrar en vigor se actualizan las vistas relacionadas y se conserva el evento de aplicación.",
+      "La cancelación previa requiere motivo y no elimina la propuesta original."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-08",
+    "title": "Revisar y aprobar cambios",
+    "description": "La solicitud identifica datos afectados, vigencia, motivo, documentos de respaldo y aprobadores requeridos.",
+    "criteria": [
+      "La solicitud identifica datos afectados, vigencia, motivo, documentos de respaldo y aprobadores requeridos.",
+      "Los cambios de compensación, nivel o estado exigen una aprobación acorde con su sensibilidad.",
+      "Nadie aprueba su propio cambio salvo una excepción documentada.",
+      "Aprobar, rechazar o devolver registra usuario, fecha, resultado y comentario.",
+      "La primera entrega puede usar rutas fijas; la ampliación permitirá configurarlas por tipo de cambio."
+    ],
+    "delivery": "Ruta básica en primera entrega; configuración avanzada en ampliación.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-09",
+    "title": "Corregir un cambio sin perder el historial",
+    "description": "Una corrección exige motivo y referencia al registro incorrecto.",
+    "criteria": [
+      "Una corrección exige motivo y referencia al registro incorrecto.",
+      "El sistema conserva el valor original, la corrección, el autor y las fechas correspondientes.",
+      "Cuando la información ya fue enviada a Nómina o a un proveedor se genera una excepción para conciliación.",
+      "Los usuarios autorizados ven la versión vigente y pueden consultar las anteriores.",
+      "No se permite eliminar silenciosamente un cambio laboral aplicado."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-10",
+    "title": "Administrar el catálogo de beneficios",
+    "description": "Cada beneficio identifica nombre, categoría, proveedor, vigencia, elegibilidad y descripción para el empleado.",
+    "criteria": [
+      "Cada beneficio identifica nombre, categoría, proveedor, vigencia, elegibilidad y descripción para el empleado.",
+      "Se distinguen prestaciones legales, beneficios de la firma y apoyos sujetos a política.",
+      "Inactivar un beneficio impide nuevas asignaciones sin borrar las históricas.",
+      "Los cambios al catálogo registran versión y fecha efectiva.",
+      "Los textos visibles no prometen una cobertura que todavía no esté confirmada."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-11",
+    "title": "Asignar beneficios",
+    "description": "La asignación identifica persona, beneficio, fecha de inicio, cobertura y condición de elegibilidad.",
+    "criteria": [
+      "La asignación identifica persona, beneficio, fecha de inicio, cobertura y condición de elegibilidad.",
+      "El sistema valida el tipo de vinculación, ubicación y otros criterios configurados antes de asignar.",
+      "RR. HH. puede justificar una excepción y obtener la aprobación requerida.",
+      "Se evitan asignaciones duplicadas o vigencias incompatibles.",
+      "La asignación no publica datos de beneficiarios o costos a roles sin permiso."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-12",
+    "title": "Consultar beneficios vigentes",
+    "description": "El empleado consulta nombre, cobertura, vigencia, proveedor y acciones permitidas de cada beneficio.",
+    "criteria": [
+      "El empleado consulta nombre, cobertura, vigencia, proveedor y acciones permitidas de cada beneficio.",
+      "Se distinguen beneficios activos, programados, suspendidos y finalizados.",
+      "La información muestra fecha de actualización y un canal para solicitar aclaraciones.",
+      "Un responsable no consulta beneficios personales de su equipo por el simple hecho de supervisarlo.",
+      "La ausencia de un beneficio muestra un estado comprensible sin exponer reglas internas innecesarias."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-13",
+    "title": "Modificar, suspender o finalizar un beneficio",
+    "description": "El movimiento identifica beneficio, persona, acción, fecha efectiva, motivo y responsable.",
+    "criteria": [
+      "El movimiento identifica beneficio, persona, acción, fecha efectiva, motivo y responsable.",
+      "Una finalización no borra periodos anteriores ni documentos relacionados.",
+      "El sistema advierte cuando la acción requiere comunicar o conciliar con un proveedor.",
+      "Los cambios retroactivos requieren autorización adicional y muestran los periodos afectados.",
+      "La vista del empleado refleja el resultado solo cuando el movimiento esté confirmado."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-14",
+    "title": "Registrar aportes, costos y coberturas",
+    "description": "Se pueden registrar aporte de la firma, aporte del empleado, frecuencia, moneda y fecha efectiva.",
+    "criteria": [
+      "Se pueden registrar aporte de la firma, aporte del empleado, frecuencia, moneda y fecha efectiva.",
+      "Los montos visibles al empleado coinciden con una fuente identificada y no se presentan como deducción procesada antes de confirmarse.",
+      "Las coberturas y topes se describen según la documentación vigente del proveedor.",
+      "Los cambios conservan versiones y pueden enviarse a Nómina cuando corresponda.",
+      "Los costos agregados para análisis pertenecen a EP-09 y respetan los permisos definidos."
+    ],
+    "delivery": "Ampliación por validar.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-15",
+    "title": "Gestionar apoyo para certificaciones y membresías",
+    "description": "Se pueden registrar apoyos para colegiación, CPA, CIA, CISA, ACCA u otras certificaciones aprobadas por la firma.",
+    "criteria": [
+      "Se pueden registrar apoyos para colegiación, CPA, CIA, CISA, ACCA u otras certificaciones aprobadas por la firma.",
+      "El registro identifica concepto, límite, vigencia, condiciones y aprobación requerida.",
+      "La certificación obtenida y su vencimiento pertenecen al expediente o capacitación; el beneficio registra únicamente el apoyo otorgado.",
+      "Los reembolsos o pagos requieren respaldo y conservan estado sin sustituir el proceso contable.",
+      "La asignación distingue apoyo único, periódico o sujeto a permanencia cuando la política lo confirme."
+    ],
+    "delivery": "Ampliación por validar.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-16",
+    "title": "Intercambiar cambios con Nómina y proveedores",
+    "description": "La integración se activa solo después de confirmar proveedor, datos, formato, frecuencia y responsables.",
+    "criteria": [
+      "La integración se activa solo después de confirmar proveedor, datos, formato, frecuencia y responsables.",
+      "Cada envío conserva periodo, versión, cantidad de registros, resultado y detalle de errores.",
+      "Los reintentos no duplican altas, bajas, aportes o cambios salariales.",
+      "Una respuesta parcial queda pendiente de conciliación y no se marca como completada.",
+      "La primera entrega puede utilizar una exportación e importación controlada antes de implementar una API."
+    ],
+    "delivery": "Ampliación sujeta a integración.",
+    "epic": 6
+  },
+  {
+    "id": "HU-06-17",
+    "title": "Controlar accesos y trazabilidad",
+    "description": "Los permisos distinguen consultar, solicitar, registrar, aprobar, corregir, exportar y administrar catálogos.",
+    "criteria": [
+      "Los permisos distinguen consultar, solicitar, registrar, aprobar, corregir, exportar y administrar catálogos.",
+      "Compensación, beneficiarios, costos y documentos sensibles tienen controles independientes.",
+      "Ser supervisor, socio o administrador técnico no concede acceso automático a toda la información.",
+      "Consultas, exportaciones, cambios, aprobaciones y correcciones sensibles dejan fecha, usuario, acción y resultado.",
+      "La bitácora evita copiar valores completos cuando baste con registrar la acción y la referencia protegida."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 6
+  },
+  {
+    "id": "HU-07-01",
+    "title": "Consultar la biblioteca documental",
+    "description": "La biblioteca distingue documentos corporativos, políticas, formularios, plantillas y archivos asociados al expediente individual.",
+    "criteria": [
+      "La biblioteca distingue documentos corporativos, políticas, formularios, plantillas y archivos asociados al expediente individual.",
+      "Cada usuario visualiza únicamente carpetas y documentos permitidos por su rol y relación con la información.",
+      "Los documentos muestran nombre, categoría, versión vigente, fecha de publicación y responsable.",
+      "Los archivos archivados o sustituidos no aparecen como vigentes en la consulta ordinaria.",
+      "Un estado vacío informa claramente cuando no existen documentos disponibles."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-02",
+    "title": "Buscar y filtrar documentos",
+    "description": "La búsqueda permite utilizar nombre, categoría, empleado relacionado, fecha, estado y etiqueta dentro del alcance autorizado.",
+    "criteria": [
+      "La búsqueda permite utilizar nombre, categoría, empleado relacionado, fecha, estado y etiqueta dentro del alcance autorizado.",
+      "Los resultados no revelan nombres, rutas o metadatos de documentos restringidos.",
+      "Se puede filtrar por vigente, pendiente de revisión, sustituido, archivado o eliminado lógicamente.",
+      "La primera entrega busca sobre metadatos; la búsqueda dentro del contenido queda para ampliación.",
+      "Los filtros activos permanecen visibles y pueden limpiarse sin perder el contexto de navegación."
+    ],
+    "delivery": "Búsqueda por metadatos en primera entrega; búsqueda por contenido en ampliación.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-03",
+    "title": "Administrar carpetas y categorías",
+    "description": "RR. HH. crea, renombra, ordena e inactiva carpetas y categorías dentro de su ámbito.",
+    "criteria": [
+      "RR. HH. crea, renombra, ordena e inactiva carpetas y categorías dentro de su ámbito.",
+      "Se distinguen carpetas corporativas de las carpetas individuales generadas para cada expediente.",
+      "Las categorías pueden definir sensibilidad, vigencia, conservación y tipos de archivo permitidos.",
+      "Inactivar una categoría no elimina los documentos existentes ni altera su historial.",
+      "Los cambios estructurales relevantes conservan fecha, responsable y motivo."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-04",
+    "title": "Cargar y validar un documento",
+    "description": "La carga exige categoría, propietario o expediente relacionado, descripción y fecha cuando corresponda.",
+    "criteria": [
+      "La carga exige categoría, propietario o expediente relacionado, descripción y fecha cuando corresponda.",
+      "Se validan formato, tamaño, nombre y cantidad de archivos conforme a la política definida.",
+      "Los archivos se revisan contra contenido malicioso antes de quedar disponibles.",
+      "Un archivo rechazado no se publica y muestra una causa comprensible sin exponer detalles técnicos innecesarios.",
+      "La carga registra autor, fecha, fuente y nivel de sensibilidad."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-05",
+    "title": "Versionar y publicar documentos",
+    "description": "Una nueva versión conserva relación con las anteriores y no las sobrescribe físicamente.",
+    "criteria": [
+      "Una nueva versión conserva relación con las anteriores y no las sobrescribe físicamente.",
+      "Cada versión identifica estado, responsable, fecha, comentario de cambio y periodo de vigencia.",
+      "Solo una versión se presenta como vigente para una audiencia y fecha determinadas.",
+      "Publicar una política puede requerir aprobación antes de hacerla visible.",
+      "Retirar una versión evita nuevas confirmaciones sobre ella y conserva las evidencias ya emitidas."
+    ],
+    "delivery": "Versionado y publicación básica en primera entrega; flujos configurables en ampliación.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-06",
+    "title": "Controlar la visibilidad y el acceso",
+    "description": "Los permisos distinguen documentos públicos internos, de equipo, de RR. HH., de Cumplimiento y del expediente individual.",
+    "criteria": [
+      "Los permisos distinguen documentos públicos internos, de equipo, de RR. HH., de Cumplimiento y del expediente individual.",
+      "El acceso puede depender del rol, la relación con el empleado, la unidad organizativa y la clasificación del documento.",
+      "Los responsables no obtienen acceso automático a documentos médicos, bancarios, salariales o de antecedentes.",
+      "Los enlaces directos vuelven a validar permisos y no permiten evadir las reglas de la biblioteca.",
+      "Los permisos temporales tienen vencimiento, motivo y responsable."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-07",
+    "title": "Consultar y descargar documentos",
+    "description": "La vista previa utiliza la versión vigente o la versión histórica seleccionada explícitamente.",
+    "criteria": [
+      "La vista previa utiliza la versión vigente o la versión histórica seleccionada explícitamente.",
+      "La descarga conserva nombre, extensión y contenido del archivo autorizado.",
+      "Los documentos sensibles requieren sesión vigente y pueden utilizar enlaces temporales.",
+      "La interfaz identifica cuando una descarga está restringida aunque la vista previa esté permitida.",
+      "Las consultas y descargas sensibles quedan registradas según la política."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-08",
+    "title": "Administrar plantillas y formularios",
+    "description": "RR. HH. mantiene plantillas para ofertas, contratos, constancias, políticas y otros documentos confirmados.",
+    "criteria": [
+      "RR. HH. mantiene plantillas para ofertas, contratos, constancias, políticas y otros documentos confirmados.",
+      "Cada plantilla conserva versión, vigencia, responsable y estado de aprobación.",
+      "Los campos variables permitidos se identifican sin insertar datos de una persona equivocada.",
+      "Una actualización de plantilla no modifica documentos ya emitidos.",
+      "El sistema distingue una plantilla de firma de un archivo informativo ordinario."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-09",
+    "title": "Solicitar y recibir documentos del empleado",
+    "description": "La solicitud identifica documento, finalidad, obligatoriedad, fecha límite, formatos y canal de entrega.",
+    "criteria": [
+      "La solicitud identifica documento, finalidad, obligatoriedad, fecha límite, formatos y canal de entrega.",
+      "El empleado solo ve solicitudes dirigidas a su expediente.",
+      "El documento recibido puede quedar pendiente, aceptado, rechazado o requerido nuevamente con comentario.",
+      "Una nueva entrega conserva relación con las versiones anteriores.",
+      "El sistema evita solicitar nuevamente documentos vigentes recibidos en EP-03 o EP-05."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-10",
+    "title": "Confirmar lectura o firmar documentos",
+    "description": "Cada acción indica si requiere lectura, aceptación, firma o entrega de una versión firmada.",
+    "criteria": [
+      "Cada acción indica si requiere lectura, aceptación, firma o entrega de una versión firmada.",
+      "La evidencia queda vinculada al usuario, documento, versión, fecha y acción exacta.",
+      "Una casilla de confirmación no se presenta como firma electrónica cuando no cumpla el mecanismo aprobado.",
+      "La primera entrega permite confirmación registrada y carga controlada de archivos firmados.",
+      "Una nueva versión relevante puede requerir una nueva confirmación sin invalidar la evidencia histórica."
+    ],
+    "delivery": "Confirmación y carga controlada en primera entrega; firma electrónica en ampliación.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-11",
+    "title": "Administrar el catálogo de capacitación",
+    "description": "Cada actividad identifica nombre, descripción, categoría, modalidad, duración, responsable y vigencia.",
+    "criteria": [
+      "Cada actividad identifica nombre, descripción, categoría, modalidad, duración, responsable y vigencia.",
+      "El catálogo contempla formación técnica, ética, independencia, seguridad, liderazgo y otras categorías aprobadas.",
+      "Se pueden registrar cursos internos, externos, sesiones en vivo y actividades con evidencia documental.",
+      "Inactivar una actividad impide nuevas asignaciones sin borrar historiales.",
+      "El sistema registra y controla capacitación; no se considera una plataforma completa de aprendizaje en línea salvo ampliación confirmada."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-12",
+    "title": "Asignar capacitaciones",
+    "description": "La asignación puede dirigirse a una persona, puesto, nivel, área o grupo autorizado.",
+    "criteria": [
+      "La asignación puede dirigirse a una persona, puesto, nivel, área o grupo autorizado.",
+      "Cada asignación establece fecha, vencimiento, obligatoriedad, responsable y criterio de finalización.",
+      "La formación obligatoria por independencia, ética o seguridad se diferencia de la capacitación opcional.",
+      "Antes de confirmar una asignación masiva se muestra la población afectada.",
+      "Un cambio posterior de puesto no elimina asignaciones ya iniciadas y aplica las reglas futuras correspondientes."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-13",
+    "title": "Consultar capacitaciones pendientes",
+    "description": "El empleado consulta actividades pendientes, próximas, vencidas y completadas.",
+    "criteria": [
+      "El empleado consulta actividades pendientes, próximas, vencidas y completadas.",
+      "Cada actividad muestra fecha límite, modalidad, instrucciones y evidencia requerida.",
+      "Los responsables autorizados consultan pendientes agregados o de su equipo sin acceder a resultados restringidos.",
+      "El inicio del sistema puede mostrar recordatorios sin incluir información sensible.",
+      "Un estado vacío distingue que no existen asignaciones de una falla de carga."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-14",
+    "title": "Registrar asistencia y finalización",
+    "description": "La finalización identifica participante, actividad, fecha, resultado, horas reconocidas y responsable del registro.",
+    "criteria": [
+      "La finalización identifica participante, actividad, fecha, resultado, horas reconocidas y responsable del registro.",
+      "El instructor solo registra las actividades y participantes que le fueron asignados.",
+      "Cuando exista evaluación, el sistema conserva resultado y criterio sin exponer notas a usuarios no autorizados.",
+      "Las correcciones requieren motivo y mantienen el valor anterior.",
+      "Completar una actividad puede cerrar la asignación correspondiente sin borrar recordatorios anteriores."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-15",
+    "title": "Gestionar evidencias y constancias",
+    "description": "Se pueden adjuntar constancias, certificados, listas de asistencia o respaldos aprobados.",
+    "criteria": [
+      "Se pueden adjuntar constancias, certificados, listas de asistencia o respaldos aprobados.",
+      "Cada evidencia queda vinculada a la actividad, persona, fecha y emisor correctos.",
+      "RR. HH. o Capacitación valida la evidencia antes de reconocer la actividad como completada cuando corresponda.",
+      "Los archivos utilizan las mismas reglas de seguridad, versión y acceso de la biblioteca documental.",
+      "Una evidencia rechazada conserva estado y motivo sin considerarse cumplimiento."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-16",
+    "title": "Controlar vencimientos y renovaciones",
+    "description": "Se registran fecha de emisión, vencimiento, periodo de renovación y responsable de seguimiento.",
+    "criteria": [
+      "Se registran fecha de emisión, vencimiento, periodo de renovación y responsable de seguimiento.",
+      "El sistema genera avisos antes del vencimiento según plazos configurados.",
+      "La renovación crea una nueva evidencia y conserva la anterior.",
+      "Los vencimientos de colegiación o certificaciones profesionales pueden alertar a RR. HH. y al empleado sin publicar el dato en el directorio.",
+      "Un vencimiento no suspende automáticamente a una persona ni modifica su puesto sin un proceso autorizado."
+    ],
+    "delivery": "Ampliación por validar.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-17",
+    "title": "Consultar el historial de capacitación",
+    "description": "El historial muestra actividades asignadas, completadas, vencidas, exentas o canceladas con sus fechas.",
+    "criteria": [
+      "El historial muestra actividades asignadas, completadas, vencidas, exentas o canceladas con sus fechas.",
+      "El empleado consulta su propio historial y descarga constancias permitidas.",
+      "RR. HH. puede filtrar por persona, área, categoría, periodo y estado.",
+      "Las horas reconocidas distinguen formación interna de educación profesional continua cuando corresponda.",
+      "Los reportes agregados y análisis de cumplimiento pertenecen a EP-09."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-18",
+    "title": "Aplicar conservación, archivo y eliminación",
+    "description": "Las reglas pueden variar por categoría documental, relación laboral, obligación legal y tipo de evidencia.",
+    "criteria": [
+      "Las reglas pueden variar por categoría documental, relación laboral, obligación legal y tipo de evidencia.",
+      "El archivo conserva integridad, metadatos, versión y acceso restringido durante el plazo aplicable.",
+      "La eliminación requiere autorización, motivo y registro, y respeta bloqueos por disputa, auditoría u obligación vigente.",
+      "Cuando sea suficiente se conserva un registro mínimo sin mantener el contenido completo.",
+      "Las reglas definitivas se validan con los responsables y asesores de la firma."
+    ],
+    "delivery": "Reglas básicas en primera entrega; automatización en ampliación.",
+    "epic": 7
+  },
+  {
+    "id": "HU-07-19",
+    "title": "Controlar accesos y trazabilidad",
+    "description": "Los permisos distinguen cargar, consultar, descargar, versionar, publicar, solicitar, confirmar, asignar capacitación y registrar resultados.",
+    "criteria": [
+      "Los permisos distinguen cargar, consultar, descargar, versionar, publicar, solicitar, confirmar, asignar capacitación y registrar resultados.",
+      "Las acciones sensibles conservan usuario, fecha, documento o actividad, versión y resultado.",
+      "Los registros de auditoría no almacenan contraseñas ni copias innecesarias del contenido protegido.",
+      "Los accesos temporales, exportaciones y descargas masivas requieren motivo y alcance autorizado.",
+      "El auditor autorizado puede consultar trazabilidad sin modificar los eventos revisados."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 7
+  },
+  {
+    "id": "HU-08-01",
+    "title": "Consultar el periodo de desempeño",
+    "description": "La consulta muestra ciclo, fechas, estado, objetivos, evaluaciones y acciones pendientes del usuario.",
+    "criteria": [
+      "La consulta muestra ciclo, fechas, estado, objetivos, evaluaciones y acciones pendientes del usuario.",
+      "El empleado accede únicamente a sus propios procesos y a resultados liberados conforme a la política.",
+      "Los responsables ven las personas que deben evaluar y los plazos correspondientes.",
+      "Los ciclos cerrados permanecen disponibles en modo de consulta dentro del periodo de conservación.",
+      "Un estado vacío distingue la ausencia de un ciclo de una falla de configuración."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-02",
+    "title": "Configurar un ciclo de evaluación",
+    "description": "RR. HH. define nombre, periodo evaluado, etapas, fechas, población y estado del ciclo.",
+    "criteria": [
+      "RR. HH. define nombre, periodo evaluado, etapas, fechas, población y estado del ciclo.",
+      "Las etapas pueden incluir definición de objetivos, seguimiento, autoevaluación, evaluación del responsable, revisión y comunicación.",
+      "La población puede delimitarse por puesto, nivel, área, ubicación, antigüedad o tipo de vinculación aprobado.",
+      "Antes de activar el ciclo se muestra una vista previa de participantes, responsables y fechas.",
+      "Cambiar un ciclo activo registra motivo y no altera silenciosamente evaluaciones ya enviadas."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-03",
+    "title": "Definir plantillas, criterios y escalas",
+    "description": "La plantilla identifica competencias, preguntas, ponderaciones, instrucciones y escala aplicable.",
+    "criteria": [
+      "La plantilla identifica competencias, preguntas, ponderaciones, instrucciones y escala aplicable.",
+      "Los criterios pueden variar por grupo: practicantes, personal técnico, administrativos, supervisores, gerentes o socios.",
+      "Para personal técnico se pueden incluir calidad de auditoría, NIIF, NIA, análisis, documentación, comunicación, criterio profesional, ética e independencia.",
+      "Cada nivel de la escala contiene una descripción observable y evita etiquetas ambiguas o personales.",
+      "La primera entrega ofrece plantillas base; la ampliación permite versionarlas y configurarlas sin modificar ciclos anteriores."
+    ],
+    "delivery": "Plantillas base en primera entrega; configuración avanzada en ampliación.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-04",
+    "title": "Asignar participantes y responsables",
+    "description": "Cada participante queda vinculado al responsable formal vigente o a una excepción aprobada.",
+    "criteria": [
+      "Cada participante queda vinculado al responsable formal vigente o a una excepción aprobada.",
+      "Los cambios de responsable de EP-06 se reflejan según la fecha de corte definida para el ciclo.",
+      "RR. HH. puede reasignar una evaluación pendiente con motivo y registro.",
+      "Una persona no evalúa su propio desempeño como responsable principal.",
+      "Los participantes y evaluadores reciben únicamente el acceso necesario para la etapa correspondiente."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-05",
+    "title": "Crear y aprobar objetivos",
+    "description": "Cada objetivo incluye título, descripción, indicador, resultado esperado, fecha límite, responsable y estado.",
+    "criteria": [
+      "Cada objetivo incluye título, descripción, indicador, resultado esperado, fecha límite, responsable y estado.",
+      "El empleado y su responsable pueden proponer objetivos según la política; la versión acordada requiere aprobación identificable.",
+      "El sistema advierte objetivos sin criterio de medición o fuera del periodo.",
+      "Los objetivos no deben incluir nombres de clientes, hallazgos o información confidencial innecesaria.",
+      "La aprobación registra usuario, fecha y versión aceptada."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-06",
+    "title": "Clasificar y alinear objetivos",
+    "description": "Los objetivos pueden clasificarse como técnicos, calidad, clientes, desarrollo, liderazgo, cumplimiento u otras categorías confirmadas.",
+    "criteria": [
+      "Los objetivos pueden clasificarse como técnicos, calidad, clientes, desarrollo, liderazgo, cumplimiento u otras categorías confirmadas.",
+      "Se puede indicar relación con un objetivo de área o de la firma sin revelar información restringida.",
+      "La ponderación total se valida cuando el cliente decida utilizar ponderaciones.",
+      "Los objetivos obligatorios se distinguen de los individuales.",
+      "Los objetivos compartidos o de equipo quedan para ampliación y conservan responsables individuales identificables."
+    ],
+    "delivery": "Clasificación básica en primera entrega; alineación avanzada en ampliación.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-07",
+    "title": "Actualizar el avance",
+    "description": "El avance registra porcentaje o estado, fecha, comentario y usuario que realizó la actualización.",
+    "criteria": [
+      "El avance registra porcentaje o estado, fecha, comentario y usuario que realizó la actualización.",
+      "El sistema conserva hitos anteriores y no reemplaza silenciosamente el seguimiento.",
+      "Los valores permitidos corresponden al tipo de medición configurado para el objetivo.",
+      "Un objetivo vencido puede actualizarse, pero conserva la señal de atraso hasta que se cierre o reprograme.",
+      "Los responsables autorizados pueden revisar el avance sin alterar la aportación del empleado."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-08",
+    "title": "Registrar comentarios y evidencias",
+    "description": "Los comentarios se vinculan al objetivo, autor, fecha y audiencia permitida.",
+    "criteria": [
+      "Los comentarios se vinculan al objetivo, autor, fecha y audiencia permitida.",
+      "Las evidencias aceptan referencias o archivos conforme a las reglas documentales de EP-07.",
+      "El contenido evita información confidencial de clientes, papeles de trabajo o datos personales innecesarios.",
+      "Una edición conserva la versión anterior cuando el comentario ya fue utilizado en una evaluación.",
+      "Los usuarios pueden reportar contenido inapropiado para revisión de RR. HH."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-09",
+    "title": "Modificar, cerrar o cancelar un objetivo",
+    "description": "Un cambio identifica valor anterior, valor nuevo, motivo, solicitante y aprobación cuando corresponda.",
+    "criteria": [
+      "Un cambio identifica valor anterior, valor nuevo, motivo, solicitante y aprobación cuando corresponda.",
+      "Cambiar indicador, resultado o ponderación después de iniciado el periodo requiere confirmación del responsable.",
+      "El cierre registra resultado, fecha y comentario final.",
+      "La cancelación exige motivo y no se interpreta automáticamente como incumplimiento.",
+      "Los objetivos cerrados o cancelados permanecen en el historial del ciclo."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-10",
+    "title": "Completar la autoevaluación",
+    "description": "La autoevaluación presenta los criterios y objetivos correspondientes al empleado y al ciclo.",
+    "criteria": [
+      "La autoevaluación presenta los criterios y objetivos correspondientes al empleado y al ciclo.",
+      "El usuario puede guardar un borrador antes de enviar.",
+      "Los campos obligatorios y comentarios requeridos se validan antes del envío.",
+      "Después del envío, la autoevaluación queda protegida salvo reapertura autorizada.",
+      "El empleado conoce cuándo y con quién se compartirá su contenido."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-11",
+    "title": "Completar la evaluación del responsable",
+    "description": "El responsable evalúa criterios y objetivos correspondientes al periodo correcto.",
+    "criteria": [
+      "El responsable evalúa criterios y objetivos correspondientes al periodo correcto.",
+      "Las calificaciones bajas, altas o excepcionales pueden requerir comentario según la política.",
+      "La evaluación se basa en conductas y resultados observables relacionados con el trabajo.",
+      "El responsable guarda borradores y envía una versión final identificable.",
+      "El envío no publica automáticamente los resultados al empleado."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-12",
+    "title": "Validar y cerrar una evaluación",
+    "description": "RR. HH. identifica evaluaciones incompletas, escalas inválidas, comentarios faltantes y responsables incorrectos.",
+    "criteria": [
+      "RR. HH. identifica evaluaciones incompletas, escalas inválidas, comentarios faltantes y responsables incorrectos.",
+      "El cierre registra versión, fecha, resultado y responsable de la acción.",
+      "Una evaluación cerrada no puede modificarse sin reapertura autorizada y motivo.",
+      "La primera entrega permite revisión individual; la ampliación puede incorporar calibración por área o nivel.",
+      "La calibración no sobrescribe silenciosamente la evaluación original y conserva participantes y justificación."
+    ],
+    "delivery": "Validación y cierre básico en primera entrega; calibración en ampliación.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-13",
+    "title": "Recopilar retroalimentación de proyectos",
+    "description": "La solicitud identifica proyecto o compromiso mediante un código permitido, periodo, evaluado y evaluador.",
+    "criteria": [
+      "La solicitud identifica proyecto o compromiso mediante un código permitido, periodo, evaluado y evaluador.",
+      "El gerente de proyecto solo consulta la información necesaria para emitir esa retroalimentación.",
+      "Los criterios pueden incluir calidad, documentación, cumplimiento, comunicación, administración del tiempo y criterio profesional.",
+      "El texto no incluye nombres de clientes, hallazgos ni información confidencial innecesaria.",
+      "RR. HH. define cómo se incorpora el resultado al ciclo formal y quién puede verlo."
+    ],
+    "delivery": "Ampliación por validar.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-14",
+    "title": "Incorporar evaluadores adicionales",
+    "description": "RR. HH. puede asignar pares, responsables de proyecto, subordinados u otros evaluadores autorizados.",
+    "criteria": [
+      "RR. HH. puede asignar pares, responsables de proyecto, subordinados u otros evaluadores autorizados.",
+      "Cada evaluador conoce criterios, fecha límite y tratamiento de su identidad.",
+      "La evaluación adicional mantiene acceso limitado al proceso asignado.",
+      "Los resultados pueden mostrarse agrupados cuando sea necesario proteger confidencialidad.",
+      "El sistema evita identificar respuestas individuales mediante grupos demasiado pequeños cuando la política exija anonimato."
+    ],
+    "delivery": "Ampliación por validar.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-15",
+    "title": "Consultar y comunicar resultados",
+    "description": "Los resultados se publican únicamente después del cierre y autorización correspondiente.",
+    "criteria": [
+      "Los resultados se publican únicamente después del cierre y autorización correspondiente.",
+      "El empleado consulta objetivos, criterios, comentarios visibles, resultado final y acuerdos de seguimiento.",
+      "Los borradores, notas privadas y resultados restringidos no se incluyen en la vista publicada.",
+      "La fecha de comunicación y la versión consultada quedan registradas.",
+      "El empleado puede confirmar recepción sin que esa confirmación signifique aceptación total del resultado."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-16",
+    "title": "Registrar acuerdos de desarrollo",
+    "description": "Los acuerdos identifican acción, responsable, fecha objetivo, estado y relación con una necesidad de desarrollo.",
+    "criteria": [
+      "Los acuerdos identifican acción, responsable, fecha objetivo, estado y relación con una necesidad de desarrollo.",
+      "Las capacitaciones acordadas pueden generar una solicitud o asignación en EP-07 después de la aprobación correspondiente.",
+      "Un acuerdo de desarrollo no modifica automáticamente puesto, compensación o condición laboral.",
+      "El empleado y el responsable pueden consultar el avance dentro del siguiente periodo permitido.",
+      "El cierre conserva resultado y comentario sin eliminar compromisos anteriores."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-17",
+    "title": "Gestionar recordatorios y pendientes",
+    "description": "El sistema identifica objetivos sin actualizar, autoevaluaciones, evaluaciones, revisiones y comunicaciones pendientes.",
+    "criteria": [
+      "El sistema identifica objetivos sin actualizar, autoevaluaciones, evaluaciones, revisiones y comunicaciones pendientes.",
+      "Los recordatorios indican acción y fecha límite sin incluir calificaciones o comentarios sensibles.",
+      "RR. HH. consulta el avance del ciclo por etapa y población autorizada.",
+      "Las tareas completadas dejan de generar avisos ordinarios y conservan fecha de cumplimiento.",
+      "La ampliación puede incorporar escalamiento automático según reglas configurables."
+    ],
+    "delivery": "Recordatorios básicos en primera entrega; escalamiento en ampliación.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-18",
+    "title": "Iniciar una evaluación extraordinaria",
+    "description": "La evaluación identifica motivo permitido, periodo, plantilla, evaluado, responsable y aprobador.",
+    "criteria": [
+      "La evaluación identifica motivo permitido, periodo, plantilla, evaluado, responsable y aprobador.",
+      "Los usos posibles pueden incluir fin de periodo de prueba, cambio de puesto o necesidad documentada de seguimiento.",
+      "No se inicia de forma secreta ni utiliza criterios ajenos al puesto sin una política validada.",
+      "El resultado conserva relación con el ciclo ordinario sin sustituirlo.",
+      "Las acciones laborales posteriores siguen EP-06 y requieren sus aprobaciones independientes."
+    ],
+    "delivery": "Ampliación por validar.",
+    "epic": 8
+  },
+  {
+    "id": "HU-08-19",
+    "title": "Controlar accesos, conservación y trazabilidad",
+    "description": "Los permisos distinguen configurar, participar, evaluar, revisar, calibrar, cerrar, publicar, consultar y exportar.",
+    "criteria": [
+      "Los permisos distinguen configurar, participar, evaluar, revisar, calibrar, cerrar, publicar, consultar y exportar.",
+      "Los comentarios privados, borradores, calificaciones y resultados tienen controles independientes.",
+      "Ser responsable, socio o administrador técnico no concede acceso automático a todos los ciclos y resultados.",
+      "Consultas, cambios, reaperturas, cierres, publicaciones y exportaciones sensibles dejan usuario, fecha, acción y resultado.",
+      "Los plazos de conservación y eliminación se aplican conforme a la política validada y preservan registros mínimos cuando exista una obligación justificable."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 8
+  },
+  {
+    "id": "HU-09-01",
+    "title": "Consultar el catálogo de reportes",
+    "description": "El catálogo distingue reportes estándar, propios, compartidos y consultados recientemente.",
+    "criteria": [
+      "El catálogo distingue reportes estándar, propios, compartidos y consultados recientemente.",
+      "Cada reporte muestra nombre, descripción, propietario, fecha de actualización y clasificación de acceso.",
+      "La búsqueda permite localizar reportes por nombre, categoría o proceso de RR. HH.",
+      "Solo aparecen reportes que el usuario tiene permiso de ejecutar.",
+      "Los reportes inactivos o sustituidos se distinguen y no se presentan como vigentes."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-02",
+    "title": "Ejecutar, filtrar y ordenar un reporte",
+    "description": "La ejecución identifica fecha y hora de corte, filtros, fuente y periodo consultado.",
+    "criteria": [
+      "La ejecución identifica fecha y hora de corte, filtros, fuente y periodo consultado.",
+      "Los filtros disponibles dependen de los campos autorizados y de la definición del reporte.",
+      "Se pueden ordenar columnas y navegar los resultados sin modificar los datos operativos.",
+      "Los totales y gráficos utilizan el mismo conjunto filtrado que el detalle.",
+      "Una consulta sin resultados muestra los criterios utilizados y un estado comprensible."
+    ],
+    "delivery": "Primera entrega; paneles interactivos ampliados después.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-03",
+    "title": "Crear un reporte personalizado",
+    "description": "El reporte requiere nombre, propósito, propietario y proceso de origen.",
+    "criteria": [
+      "El reporte requiere nombre, propósito, propietario y proceso de origen.",
+      "La creación parte de campos permitidos de empleados, contratación, ausencias, capacitación, desempeño u otros módulos habilitados.",
+      "Una vista previa muestra columnas, filtros y una muestra autorizada antes de guardar.",
+      "Las combinaciones que puedan revelar datos restringidos se bloquean o requieren permiso adicional.",
+      "Crear un reporte no copia ni altera los datos de origen."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-04",
+    "title": "Seleccionar campos y definir columnas",
+    "description": "Los campos se agrupan por proceso y muestran nombre, descripción, tipo y nivel de sensibilidad.",
+    "criteria": [
+      "Los campos se agrupan por proceso y muestran nombre, descripción, tipo y nivel de sensibilidad.",
+      "El usuario puede agregar, retirar y ordenar columnas dentro de sus permisos.",
+      "Los campos derivados identifican su fórmula y fuente.",
+      "La selección distingue el valor vigente de los valores históricos cuando ambos existan.",
+      "Los identificadores técnicos o internos no aparecen si no aportan valor al reporte."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-05",
+    "title": "Guardar, versionar y administrar reportes",
+    "description": "Guardar conserva nombre, propietario, campos, filtros, orden y fecha de modificación.",
+    "criteria": [
+      "Guardar conserva nombre, propietario, campos, filtros, orden y fecha de modificación.",
+      "Los cambios relevantes generan una versión o un historial identificable.",
+      "El propietario puede duplicar un reporte antes de realizar cambios experimentales.",
+      "Inactivar un reporte evita nuevas ejecuciones ordinarias sin borrar su historial.",
+      "Los reportes estándar solo pueden modificarse mediante una nueva versión administrada."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-06",
+    "title": "Compartir un reporte",
+    "description": "El propietario comparte con personas, roles o áreas dentro de un alcance permitido.",
+    "criteria": [
+      "El propietario comparte con personas, roles o áreas dentro de un alcance permitido.",
+      "El acceso distingue ejecutar, editar, duplicar y administrar.",
+      "Compartir la definición no concede acceso a campos o filas que el destinatario no pueda consultar.",
+      "Los cambios de audiencia registran responsable, fecha y motivo cuando sea sensible.",
+      "La primera entrega permite compartir dentro del sistema; los enlaces externos quedan excluidos."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-07",
+    "title": "Exportar resultados",
+    "description": "La exportación respeta filtros, columnas, orden y permisos de la ejecución actual.",
+    "criteria": [
+      "La exportación respeta filtros, columnas, orden y permisos de la ejecución actual.",
+      "El archivo identifica reporte, periodo, fecha de generación y advertencia de confidencialidad cuando corresponda.",
+      "Los formatos iniciales pueden incluir CSV y XLSX; PDF se añade cuando el diseño del reporte lo permita.",
+      "Las exportaciones sensibles registran usuario, fecha, alcance y cantidad de filas.",
+      "El sistema puede limitar o bloquear exportaciones masivas según el rol y la clasificación de los datos."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-08",
+    "title": "Programar la generación o entrega",
+    "description": "La programación identifica reporte, frecuencia, fecha, destinatarios, formato y vigencia.",
+    "criteria": [
+      "La programación identifica reporte, frecuencia, fecha, destinatarios, formato y vigencia.",
+      "Cada ejecución vuelve a validar permisos y no utiliza accesos retirados.",
+      "Los archivos sensibles no se adjuntan a correos ordinarios; se utiliza acceso autenticado cuando corresponda.",
+      "Los errores de ejecución o entrega quedan visibles para el propietario.",
+      "La programación puede pausarse o finalizarse sin eliminar resultados anteriores."
+    ],
+    "delivery": "Ampliación por validar.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-09",
+    "title": "Analizar plantilla y movimientos",
+    "description": "El indicador utiliza empleados activos y movimientos según una fecha de corte y definición visible.",
+    "criteria": [
+      "El indicador utiliza empleados activos y movimientos según una fecha de corte y definición visible.",
+      "Se pueden consultar altas, bajas, traslados y cambios de estado por periodo.",
+      "Los filtros por área, nivel, ubicación o tipo de vinculación respetan límites de confidencialidad.",
+      "Las personas contratadas por servicios profesionales se distinguen de la plantilla laboral cuando corresponda.",
+      "Los resultados pueden abrir el detalle únicamente para usuarios autorizados."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-10",
+    "title": "Analizar rotación",
+    "description": "La fórmula de rotación, población base, periodo y tratamiento de movimientos quedan documentados.",
+    "criteria": [
+      "La fórmula de rotación, población base, periodo y tratamiento de movimientos quedan documentados.",
+      "Se distinguen salidas voluntarias, involuntarias y otras categorías confirmadas.",
+      "El indicador puede segmentarse por área, nivel, antigüedad o ubicación cuando el tamaño lo permita.",
+      "Los motivos sensibles o comentarios no aparecen en vistas agregadas sin autorización.",
+      "Los resultados no se comparan entre periodos con definiciones diferentes sin una advertencia."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-11",
+    "title": "Analizar reclutamiento y fuentes",
+    "description": "Se pueden consultar vacantes, postulaciones, avances, descartes, ofertas y contrataciones por periodo.",
+    "criteria": [
+      "Se pueden consultar vacantes, postulaciones, avances, descartes, ofertas y contrataciones por periodo.",
+      "Los canales registrados en EP-02 permiten comparar volumen y contrataciones por fuente.",
+      "Las etapas y motivos utilizan catálogos vigentes de EP-03.",
+      "Los resultados agregados no exponen notas, antecedentes ni declaraciones de independencia.",
+      "Los indicadores de tiempo identifican claramente el evento inicial y final utilizado."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-12",
+    "title": "Consultar indicadores de operación de RR. HH.",
+    "description": "Los indicadores disponibles pueden cubrir ausencias, beneficios, capacitación, desempeño, incorporaciones, documentos y horas.",
+    "criteria": [
+      "Los indicadores disponibles pueden cubrir ausencias, beneficios, capacitación, desempeño, incorporaciones, documentos y horas.",
+      "Cada indicador muestra definición, fuente, periodo, fecha de actualización y responsable funcional.",
+      "Las ausencias distinguen solicitado, aprobado y utilizado cuando la fuente lo permita.",
+      "Capacitación y desempeño se presentan de forma agregada sin exponer comentarios o calificaciones individuales.",
+      "Los datos de horas por cliente o proyecto protegen los nombres y códigos restringidos."
+    ],
+    "delivery": "Indicadores básicos en primera entrega; comparaciones avanzadas después.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-13",
+    "title": "Revisar calidad, cambios y datos faltantes",
+    "description": "El reporte identifica registros incompletos, valores inválidos, duplicados y relaciones organizativas inconsistentes.",
+    "criteria": [
+      "El reporte identifica registros incompletos, valores inválidos, duplicados y relaciones organizativas inconsistentes.",
+      "La revisión de cambios muestra campo, valor anterior, valor nuevo, fecha y responsable dentro de los permisos.",
+      "Los hallazgos enlazan al proceso responsable de corregir el dato, sin editarlo directamente desde el reporte.",
+      "Las excepciones resueltas conservan fecha, responsable y referencia de la corrección.",
+      "Las alertas automáticas y reglas configurables quedan para ampliación."
+    ],
+    "delivery": "Reportes de calidad en primera entrega; alertas en ampliación.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-14",
+    "title": "Configurar una encuesta eNPS",
+    "description": "La encuesta define nombre, periodo, población, fechas, pregunta de recomendación y preguntas abiertas permitidas.",
+    "criteria": [
+      "La encuesta define nombre, periodo, población, fechas, pregunta de recomendación y preguntas abiertas permitidas.",
+      "La escala de recomendación utiliza valores de 0 a 10 y explica su finalidad.",
+      "Antes de publicar se define si las respuestas son anónimas, confidenciales o identificadas y quién puede consultarlas.",
+      "La población excluye cuentas técnicas, personas inactivas y otros grupos no aplicables según la fecha de corte.",
+      "Las preguntas adicionales evitan datos sensibles innecesarios y se someten a revisión de RR. HH."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-15",
+    "title": "Publicar y responder la encuesta",
+    "description": "Cada participante elegible puede responder una sola vez dentro del periodo abierto.",
+    "criteria": [
+      "Cada participante elegible puede responder una sola vez dentro del periodo abierto.",
+      "La interfaz funciona en celular y muestra fecha de cierre, finalidad y tratamiento de las respuestas.",
+      "El usuario puede guardar un avance únicamente cuando la política de anonimato lo permita sin comprometerlo.",
+      "El sistema confirma la recepción sin mostrar la respuesta en notificaciones generales.",
+      "RR. HH. consulta participación agregada sin conocer quién respondió cuando la encuesta sea anónima."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-16",
+    "title": "Calcular y presentar el eNPS",
+    "description": "Las respuestas de 9 y 10 se clasifican como promotores, 7 y 8 como pasivos, y 0 a 6 como detractores.",
+    "criteria": [
+      "Las respuestas de 9 y 10 se clasifican como promotores, 7 y 8 como pasivos, y 0 a 6 como detractores.",
+      "El resultado se calcula restando el porcentaje de detractores al porcentaje de promotores.",
+      "La vista muestra puntuación, participación, cantidad de respuestas, periodo y fecha de corte.",
+      "El cálculo excluye respuestas incompletas conforme a una regla documentada.",
+      "Una corrección o exclusión autorizada genera una nueva versión del resultado."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-17",
+    "title": "Analizar tendencias y segmentos",
+    "description": "La tendencia compara periodos que utilizan preguntas, escalas y poblaciones compatibles.",
+    "criteria": [
+      "La tendencia compara periodos que utilizan preguntas, escalas y poblaciones compatibles.",
+      "Los segmentos pueden incluir área, nivel, ubicación, antigüedad u otros campos autorizados.",
+      "No se muestra un segmento cuando su tamaño sea inferior al umbral de confidencialidad definido.",
+      "Los filtros combinados que permitan inferir identidades se bloquean o agrupan.",
+      "La comparación conserva contexto sobre participación y cambios organizativos relevantes."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-18",
+    "title": "Revisar y clasificar comentarios",
+    "description": "Los comentarios se presentan según las reglas de anonimato y acceso definidas para la encuesta.",
+    "criteria": [
+      "Los comentarios se presentan según las reglas de anonimato y acceso definidas para la encuesta.",
+      "RR. HH. puede asignar temas aprobados, por ejemplo cultura, liderazgo, desarrollo, carga de trabajo o herramientas.",
+      "La clasificación manual conserva autor de la clasificación y fecha sin identificar al participante.",
+      "Los comentarios que contengan nombres, clientes o datos sensibles pueden ocultarse de vistas amplias y someterse a revisión.",
+      "El sistema no altera el texto original al clasificarlo y conserva una versión protegida."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-19",
+    "title": "Publicar resultados y dar seguimiento",
+    "description": "RR. HH. define qué resultados agregados se publican, a qué audiencia y en qué fecha.",
+    "criteria": [
+      "RR. HH. define qué resultados agregados se publican, a qué audiencia y en qué fecha.",
+      "La publicación incluye participación, periodo, alcance y una explicación de la puntuación.",
+      "Los comentarios individuales no se publican salvo una selección revisada que preserve la confidencialidad.",
+      "Los compromisos de mejora identifican acción, responsable, fecha y estado.",
+      "Publicar resultados no habilita acceso al detalle confidencial de la encuesta."
+    ],
+    "delivery": "Ampliación por validar.",
+    "epic": 9
+  },
+  {
+    "id": "HU-09-20",
+    "title": "Controlar definiciones, accesos y trazabilidad",
+    "description": "Cada reporte o indicador identifica propietario funcional, definición, fuente, periodicidad y clasificación de acceso.",
+    "criteria": [
+      "Cada reporte o indicador identifica propietario funcional, definición, fuente, periodicidad y clasificación de acceso.",
+      "Los permisos distinguen crear, editar, ejecutar, compartir, exportar, administrar encuestas y consultar comentarios.",
+      "Un administrador técnico no obtiene acceso automático a salarios, respuestas, comentarios o datos personales.",
+      "Ejecuciones sensibles, cambios de definición, accesos a comentarios, exportaciones y publicaciones dejan usuario, fecha y resultado.",
+      "La conservación de resultados y archivos exportados sigue una política validada y permite suspender eliminación ante una obligación justificada."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 9
+  },
+  {
+    "id": "HU-10-01",
+    "title": "Consultar la hoja del periodo",
+    "description": "La hoja identifica empleado, periodo, fechas, zona horaria aplicable y estado.",
+    "criteria": [
+      "La hoja identifica empleado, periodo, fechas, zona horaria aplicable y estado.",
+      "Se muestran las horas por día y los totales del periodo, distinguiendo registros, ausencias y días sin información.",
+      "El empleado puede navegar entre periodos permitidos sin editar uno bloqueado.",
+      "Los horarios y días no laborables provienen de la configuración vigente del empleado.",
+      "Un estado vacío distingue un día no trabajado de un registro todavía pendiente."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-02",
+    "title": "Registrar horas trabajadas",
+    "description": "La captura permite indicar fecha, cantidad de horas y comentario cuando la política lo requiera.",
+    "criteria": [
+      "La captura permite indicar fecha, cantidad de horas y comentario cuando la política lo requiera.",
+      "El sistema valida que la fecha pertenezca a un periodo abierto y que la cantidad use los incrementos permitidos.",
+      "Se advierten duplicados, solapamientos o totales que exceden los límites configurados, sin inventar automáticamente una solución.",
+      "Las ausencias aprobadas de EP-01 pueden reflejarse en la hoja sin obligar al empleado a capturarlas nuevamente.",
+      "Las horas ordinarias, extraordinarias, no laboradas o de otra categoría se separan únicamente si el cliente confirma esas clasificaciones.",
+      "El empleado puede guardar un borrador antes de enviar el periodo."
+    ],
+    "delivery": "Primera entrega, sujeta a definir quiénes registran horas y qué categorías utilizan.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-03",
+    "title": "Registrar entradas y salidas",
+    "description": "La función solo aparece para grupos de empleados cuya política requiera fichaje.",
+    "criteria": [
+      "La función solo aparece para grupos de empleados cuya política requiera fichaje.",
+      "Cada evento conserva fecha, hora, zona horaria, tipo y origen permitido.",
+      "El sistema identifica una salida ausente, eventos duplicados o una secuencia imposible y solicita corrección.",
+      "Una corrección no reemplaza silenciosamente el evento original y sigue el flujo de aprobación acordado.",
+      "La ubicación, dispositivo o evidencia adicional solo se recopila si existe una finalidad confirmada y una regla de privacidad validada."
+    ],
+    "delivery": "Ampliación por validar.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-04",
+    "title": "Distribuir tiempo por cliente o proyecto",
+    "description": "El empleado solo puede seleccionar proyectos, clientes o códigos a los que esté asignado y tenga acceso.",
+    "criteria": [
+      "El empleado solo puede seleccionar proyectos, clientes o códigos a los que esté asignado y tenga acceso.",
+      "Cada línea identifica fecha, horas, categoría y proyecto o actividad, sin modificar la relación laboral formal de EP-04.",
+      "La suma distribuida coincide con el total diario o el sistema muestra la diferencia pendiente.",
+      "Los nombres de clientes restringidos no aparecen a usuarios ajenos al compromiso.",
+      "Cerrar una asignación impide nuevos registros desde la fecha definida, pero conserva el historial.",
+      "El cliente debe confirmar si esta función pertenece al sistema de RR. HH. o a una herramienta profesional o de facturación independiente."
+    ],
+    "delivery": "Ampliación por validar.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-05",
+    "title": "Corregir horas y consultar el historial",
+    "description": "Durante el borrador, el empleado puede corregir sus registros dentro de las reglas del periodo.",
+    "criteria": [
+      "Durante el borrador, el empleado puede corregir sus registros dentro de las reglas del periodo.",
+      "Después del envío o cierre, una corrección requiere solicitud, motivo y aprobación según la política.",
+      "El historial muestra valor anterior, valor nuevo, autor, fecha, motivo y resolución.",
+      "Una corrección aprobada recalcula los totales afectados y señala si el resultado ya fue enviado a Nómina.",
+      "Los usuarios que consultan una hoja ven la versión vigente y pueden abrir el historial únicamente si tienen permiso."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-06",
+    "title": "Enviar la hoja de tiempo",
+    "description": "Antes del envío se muestran total de horas, días incompletos, advertencias y errores que impiden continuar.",
+    "criteria": [
+      "Antes del envío se muestran total de horas, días incompletos, advertencias y errores que impiden continuar.",
+      "El envío cambia la hoja de borrador a enviada y registra fecha y usuario.",
+      "Una hoja enviada queda protegida contra edición directa mientras se revisa.",
+      "El empleado puede retirar el envío antes de la revisión únicamente si la política lo permite y deja motivo.",
+      "El sistema confirma el resultado sin presentar una hoja rechazada por validaciones como enviada."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-07",
+    "title": "Revisar y resolver una hoja de tiempo",
+    "description": "El responsable ve las hojas que le corresponde revisar, con totales, excepciones y fecha límite.",
+    "criteria": [
+      "El responsable ve las hojas que le corresponde revisar, con totales, excepciones y fecha límite.",
+      "Puede aprobar o devolver para corrección; devolver exige comentario visible para el empleado.",
+      "La resolución registra responsable, fecha, resultado y comentario.",
+      "El responsable no puede aprobar su propia hoja salvo que la firma defina una excepción.",
+      "Si las horas por cliente requieren un aprobador diferente del responsable laboral, el sistema puede incorporar una aprobación matricial cuando el cliente confirme el flujo.",
+      "Una aprobación no significa que la nómina ya fue calculada o pagada."
+    ],
+    "delivery": "Aprobación básica en primera entrega; aprobación matricial en ampliación.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-08",
+    "title": "Bloquear o reabrir un periodo",
+    "description": "El bloqueo identifica periodo, alcance, responsable y fecha efectiva.",
+    "criteria": [
+      "El bloqueo identifica periodo, alcance, responsable y fecha efectiva.",
+      "Una hoja bloqueada no permite cambios ordinarios y muestra el motivo y el canal de corrección.",
+      "Reabrir exige motivo, autorización y registro de las hojas afectadas.",
+      "Si la información ya fue enviada al proveedor, la reapertura genera una excepción que debe conciliarse.",
+      "Bloquear el periodo no borra solicitudes de corrección ni el historial."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-09",
+    "title": "Administrar el calendario de nómina",
+    "description": "Cada periodo identifica inicio, fin, fecha límite de horas, fechas de aprobación, procesamiento y pago.",
+    "criteria": [
+      "Cada periodo identifica inicio, fin, fecha límite de horas, fechas de aprobación, procesamiento y pago.",
+      "El calendario distingue periodos abiertos, en revisión, bloqueados, procesados y pagados, según los estados confirmados.",
+      "Los cambios de fecha registran responsable, motivo y usuarios afectados.",
+      "Feriados y días no laborables relevantes se toman de una fuente acordada y no se aplican silenciosamente a todos los grupos.",
+      "Los empleados ven las fechas que les afectan; solo Nómina modifica el calendario."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-10",
+    "title": "Gestionar recordatorios del periodo",
+    "description": "Los recordatorios pueden dirigirse a empleados, responsables, RR. HH. o Nómina según la tarea.",
+    "criteria": [
+      "Los recordatorios pueden dirigirse a empleados, responsables, RR. HH. o Nómina según la tarea.",
+      "Se contemplan hojas sin enviar, aprobaciones pendientes, excepciones, importaciones y validaciones del periodo.",
+      "Un recordatorio muestra acción y fecha límite sin incluir salario u otra información sensible innecesaria.",
+      "Las tareas completadas se distinguen de las pendientes y conservan responsable y fecha.",
+      "En ampliación se pueden configurar reglas automáticas y escalamiento; la primera entrega permite recordatorios base y seguimiento manual."
+    ],
+    "delivery": "Primera entrega; automatización avanzada en ampliación.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-11",
+    "title": "Controlar el resumen y las excepciones",
+    "description": "El resumen muestra cantidad de empleados incluidos, hojas pendientes, aprobaciones, correcciones, altas, bajas y otras excepciones confirmadas.",
+    "criteria": [
+      "El resumen muestra cantidad de empleados incluidos, hojas pendientes, aprobaciones, correcciones, altas, bajas y otras excepciones confirmadas.",
+      "El monto total de nómina o requerimiento de fondos solo aparece cuando proviene de una fuente identificada y para roles autorizados.",
+      "Los totales indican moneda, periodo, fecha de actualización y origen.",
+      "El sistema no presenta una estimación como monto final procesado.",
+      "Desde cada excepción se puede abrir el registro relacionado dentro de los permisos del usuario."
+    ],
+    "delivery": "Primera entrega, sujeta a definir la fuente y los indicadores.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-12",
+    "title": "Incorporar resultados de nómina",
+    "description": "La primera entrega permite una carga controlada mediante un formato acordado, con periodo, empleado y moneda identificables.",
+    "criteria": [
+      "La primera entrega permite una carga controlada mediante un formato acordado, con periodo, empleado y moneda identificables.",
+      "Antes de confirmar se validan empleados desconocidos, duplicados, periodo, totales, estructura y campos obligatorios.",
+      "El sistema muestra un resumen de registros aceptados, rechazados y advertencias sin publicar parcialmente en silencio.",
+      "Confirmar la carga conserva archivo de origen o referencia, responsable, fecha, resultado y versión.",
+      "Reemplazar un resultado publicado requiere autorización, motivo y nueva versión.",
+      "La carga incorpora resultados; no afirma que este sistema calculó impuestos, deducciones o pago neto."
+    ],
+    "delivery": "Carga controlada en primera entrega; integración automática en HU-10-20.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-13",
+    "title": "Consultar recibos de pago",
+    "description": "El empleado solo ve sus propios recibos publicados y los periodos permitidos.",
+    "criteria": [
+      "El empleado solo ve sus propios recibos publicados y los periodos permitidos.",
+      "El listado identifica fecha de pago, periodo, total bruto, deducciones, impuestos y neto cuando esos datos estén disponibles.",
+      "Un recibo en preparación o con una carga no confirmada no aparece como publicado.",
+      "Si no hay recibo, se muestra un estado comprensible sin revelar información de procesamiento interno.",
+      "Abrir un recibo requiere una sesión autenticada y respeta medidas adicionales que se definan para datos salariales."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-14",
+    "title": "Consultar el detalle de un recibo",
+    "description": "El detalle identifica empleado, periodo, fecha, moneda y versión del recibo.",
+    "criteria": [
+      "El detalle identifica empleado, periodo, fecha, moneda y versión del recibo.",
+      "Se muestran ingresos, impuestos, deducciones, pago neto y, cuando aplique, horas o bases informativas recibidas del proveedor.",
+      "Cada concepto conserva el nombre y valor suministrados por la fuente aprobada; el sistema no recategoriza importes sin una regla.",
+      "Se distinguen importes del periodo y acumulados del año cuando ambos existan.",
+      "La interfaz evita mostrar números completos de cuentas bancarias u otros identificadores sensibles."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-15",
+    "title": "Descargar o imprimir un recibo",
+    "description": "La descarga corresponde al mismo periodo y versión mostrados en pantalla.",
+    "criteria": [
+      "La descarga corresponde al mismo periodo y versión mostrados en pantalla.",
+      "El documento identifica su origen, empleado, periodo, moneda y fecha de emisión.",
+      "Solo el empleado y los roles expresamente autorizados pueden generar el archivo.",
+      "La descarga o impresión queda registrada conforme a la política de trazabilidad.",
+      "El archivo evita exponer más datos personales o bancarios de los necesarios."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-16",
+    "title": "Consultar el historial y los acumulados",
+    "description": "El historial ordena los pagos por fecha y permite abrir cada recibo disponible.",
+    "criteria": [
+      "El historial ordena los pagos por fecha y permite abrir cada recibo disponible.",
+      "Los acumulados identifican año, moneda, fecha de corte y fuente.",
+      "Si se reemplaza un recibo, el empleado ve la versión vigente y el sistema conserva la trazabilidad de versiones anteriores para roles autorizados.",
+      "Los acumulados se recalculan o importan de forma consistente con los recibos publicados.",
+      "La ausencia de periodos anteriores no se interpreta automáticamente como falta de pago."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-17",
+    "title": "Consultar datos de pago y deducciones",
+    "description": "El resumen muestra únicamente datos enmascarados de cuentas o medios de pago.",
+    "criteria": [
+      "El resumen muestra únicamente datos enmascarados de cuentas o medios de pago.",
+      "Se pueden mostrar deducciones y aportes vigentes con nombre, tipo y fecha efectiva cuando su fuente esté confirmada.",
+      "El empleado no edita directamente información bancaria o deducciones mediante esta consulta.",
+      "Una corrección se deriva al proceso autorizado y deja solicitud e historial.",
+      "Los detalles fiscales, bancarios o de terceros solo son visibles para los roles que los necesitan."
+    ],
+    "delivery": "Primera entrega si la fuente está disponible; de lo contrario, después de la integración correspondiente.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-18",
+    "title": "Reportar una discrepancia",
+    "description": "El reporte se vincula al periodo, hoja o recibo correcto y permite describir la diferencia.",
+    "criteria": [
+      "El reporte se vincula al periodo, hoja o recibo correcto y permite describir la diferencia.",
+      "El empleado puede adjuntar respaldo dentro de los formatos y límites acordados.",
+      "La solicitud tiene estado, responsable, fecha de respuesta y resolución.",
+      "Corregir un pago o una hoja sigue el flujo autorizado y no modifica silenciosamente un recibo ya publicado.",
+      "La respuesta evita incluir datos salariales en canales inseguros o notificaciones generales."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-19",
+    "title": "Controlar accesos y trazabilidad",
+    "description": "Los permisos distinguen registrar, revisar, aprobar, bloquear, importar, publicar, consultar, descargar y exportar.",
+    "criteria": [
+      "Los permisos distinguen registrar, revisar, aprobar, bloquear, importar, publicar, consultar, descargar y exportar.",
+      "Un supervisor accede únicamente a las hojas de su alcance y no ve recibos o datos salariales por esa relación, salvo permiso expreso.",
+      "Nómina y RR. HH. tienen alcances diferenciados; ser administrador técnico no concede acceso automático a salarios o cuentas.",
+      "Consultas, descargas, exportaciones, cambios, aprobaciones, reaperturas, cargas y publicaciones sensibles dejan trazabilidad.",
+      "La bitácora conserva usuario, fecha, acción, periodo y resultado sin copiar contraseñas, cuentas completas o documentos íntegros."
+    ],
+    "delivery": "Primera entrega.",
+    "epic": 10
+  },
+  {
+    "id": "HU-10-20",
+    "title": "Integrar el proveedor de nómina",
+    "description": "La integración solo se activa después de confirmar proveedor, contrato, método técnico, datos, frecuencia y responsables.",
+    "criteria": [
+      "La integración solo se activa después de confirmar proveedor, contrato, método técnico, datos, frecuencia y responsables.",
+      "Antes de enviar se valida el periodo, los empleados incluidos, aprobaciones y excepciones.",
+      "Cada envío o recepción conserva identificador, fecha, resultado y detalle de errores procesables.",
+      "El sistema permite conciliar cantidad de empleados y totales entre origen y respuesta sin marcar como exitoso un intercambio parcial.",
+      "Los reintentos no generan duplicados y requieren controles para versiones ya publicadas.",
+      "Si la integración no está disponible, la carga controlada de HU-10-12 permanece como alternativa."
+    ],
+    "delivery": "Ampliación sujeta a proveedor e integración.",
+    "epic": 10
+  }
+]
