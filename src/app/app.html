@@ -4,8 +4,9 @@
 </header>
 <main class="container">
   <div class="eyebrow">PLAN DE ENTREGA · FIRMA DE AUDITORÍA FINANCIERA</div>
-  <section class="intro"><div><h1>Sprints del proyecto</h1><p>Selecciona un sprint para explorar sus capacidades y criterios de aceptación.</p></div><div class="summary"><b>{{ total() }}</b><span>capacidades<br>planificadas</span></div></section>
-  <div class="legend"><span class="legend-dot"></span> Sprints 1–3: MVP <span class="legend-divider"></span> Sprints 4–10: ampliaciones</div>
+  <section class="intro"><div><h1>Sprints del proyecto</h1><p>Alcance funcional del MVP y backlog posterior. Selecciona un sprint para revisar sus historias.</p></div><div class="summary"><b>{{ mvpTotal() }}</b><span>capacidades<br>del MVP</span></div></section>
+  <div class="priority-banner"><strong>Orden de arranque</strong><span>1. Mi información del empleado</span><span>2. Personas y permisos de gerencia</span><span>3. Consulta y edición autorizada de nómina</span></div>
+  <div class="legend"><span class="legend-dot"></span> Sprints 1–6: MVP funcional <span class="legend-divider"></span> Sprints 7–10: ampliaciones <span class="legend-divider"></span> {{ total() }} capacidades en el plan</div>
   <section class="sprint-grid" aria-label="Sprints del proyecto">
     @for (sprint of sprints; track sprint.number) {
       <button class="sprint-card" type="button" [class.active]="selectedSprint() === sprint.number" [class.mvp]="sprint.phase === 'MVP'" [attr.aria-pressed]="selectedSprint() === sprint.number" (click)="selectSprint(sprint.number)">
@@ -14,6 +15,14 @@
         <span class="count-pill">{{ forSprint(sprint.number).length }} capacidades</span>
       </button>
     }
+  </section>
+  <section class="access-section" aria-labelledby="access-title">
+    <div class="access-heading"><span class="section-kicker">ACCESO POR ROL</span><h2 id="access-title">Qué puede ver cada persona</h2><p>Las ventanas comparten el expediente; la información sensible depende del permiso asignado.</p></div>
+    <div class="access-grid">
+      @for (access of accessSummary; track access.role) {
+        <article class="access-card"><h3>{{ access.role }}</h3><p>{{ access.scope }}</p><small>{{ access.limit }}</small></article>
+      }
+    </div>
   </section>
   <section class="story-section" aria-live="polite">
     <div class="story-heading"><div><span class="section-kicker">{{ sprints[selectedSprint() - 1].phase }} · SPRINT {{ selectedSprint() }}</span><h2>{{ sprints[selectedSprint() - 1].title }}</h2><p>{{ visibleStories().length }} capacidades en este sprint. Abre una para ver sus criterios.</p></div><span class="story-count">{{ visibleStories().length }} / {{ total() }}</span></div>
@@ -25,7 +34,7 @@
             <span class="story-id">{{ story.id }}</span><span class="story-copy"><strong>{{ story.title }}</strong><span>{{ story.description }}</span></span><span class="expand-icon" aria-hidden="true">{{ expandedStory() === story.id ? '−' : '+' }}</span>
           </button>
           @if (expandedStory() === story.id) {
-            <div class="story-detail" [id]="'detail-' + story.id"><div class="detail-block"><h3>Criterios de aceptación propuestos</h3><ul>@for (criterion of story.criteria; track criterion) { <li>{{ criterion }}</li> }</ul></div><div class="detail-meta"><div><small>ÉPICA</small><b>EP-{{ story.epic.toString().padStart(2, '0') }}</b></div><div><small>PRIORIDAD EN EL MAPPING</small><b>{{ story.delivery }}</b></div><div><small>PUNTOS / RESPONSABLE</small><b>Por estimar · Por asignar</b></div></div></div>
+            <div class="story-detail" [id]="'detail-' + story.id"><div class="detail-block"><h3>Criterios de aceptación propuestos</h3><ul>@for (criterion of story.criteria; track criterion) { <li>{{ criterion }}</li> }</ul></div><div class="detail-meta"><div><small>ORIGEN</small><b>{{ story.epic === 0 ? 'Precisión funcional del MVP' : 'EP-' + story.epic.toString().padStart(2, '0') }}</b></div><div><small>PRIORIDAD EN EL MAPPING</small><b>{{ story.delivery }}</b></div><div><small>PUNTOS / RESPONSABLE</small><b>Por estimar · Por asignar</b></div></div></div>
           }
         </article>
       }
