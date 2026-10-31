@@ -1,8 +1,9 @@
 import { Component, OnInit, computed, signal } from '@angular/core';
 
 interface Story { id: string; title: string; description: string; criteria: string[]; delivery: string; epic: number; }
-interface Sprint { number: number; title: string; description: string; phase: 'MVP' | 'Después del MVP'; ids?: string[]; epics?: number[]; }
+interface Sprint { number: number; title: string; description: string; phase: 'MVP' | 'Después del MVP'; allocation: string; ids?: string[]; epics?: number[]; }
 interface AccessSummary { role: string; scope: string; limit: string; }
+interface PlanDay { date: string; focus: string; outcome: string; sprints: string; milestone?: boolean; }
 
 // El tablero describe alcance funcional. No contiene datos de empleados ni lógica de nómina.
 const addedMvpStories: Story[] = [
@@ -14,16 +15,30 @@ const addedMvpStories: Story[] = [
 ];
 
 const sprints: Sprint[] = [
-  { number: 1, title: 'Mi información y acceso', description: 'El empleado entra y consulta su expediente; permisos y edición básica del perfil.', phase: 'MVP', ids: ['MVP-01', 'MVP-02', 'HU-04-02', 'HU-04-04', 'HU-04-07', 'HU-04-13', 'HU-04-17', 'HU-06-01', 'HU-06-02'] },
-  { number: 2, title: 'Personas y configuración', description: 'Lista de empleados, alta, perfil laboral, vistas de gerencia y niveles de acceso.', phase: 'MVP', ids: ['MVP-03', 'HU-04-01', 'HU-04-03', 'HU-04-05', 'HU-04-12', 'HU-06-03', 'HU-06-04', 'HU-06-05', 'HU-06-07', 'HU-06-09'] },
-  { number: 3, title: 'Pago y nómina', description: 'Consulta de boletas propias y edición controlada de datos de nómina.', phase: 'MVP', ids: ['MVP-04', 'MVP-05', 'HU-06-06', 'HU-10-12', 'HU-10-13', 'HU-10-14', 'HU-10-15', 'HU-10-16', 'HU-10-17', 'HU-10-19'] },
-  { number: 4, title: 'Reclutamiento', description: 'Vacantes, formulario, página pública, postulaciones y seguimiento inicial.', phase: 'MVP', ids: ['HU-02-01', 'HU-02-02', 'HU-02-03', 'HU-02-04', 'HU-02-05', 'HU-02-07', 'HU-02-08', 'HU-02-09', 'HU-02-11', 'HU-02-12', 'HU-02-13', 'HU-02-14', 'HU-02-15', 'HU-03-01', 'HU-03-02', 'HU-03-04'] },
-  { number: 5, title: 'Ausencias e inicio', description: 'Saldos, vacaciones, suspensiones, solicitudes, aprobaciones y panel personal.', phase: 'MVP', ids: ['HU-01-01', 'HU-01-02', 'HU-01-03', 'HU-01-04', 'HU-01-05', 'HU-01-06', 'HU-01-07', 'HU-01-08', 'HU-01-11', 'HU-01-16'] },
-  { number: 6, title: 'Expediente integral', description: 'Documentos, beneficios, capacitación y avance de incorporación.', phase: 'MVP', ids: ['HU-05-01', 'HU-05-04', 'HU-05-05', 'HU-05-09', 'HU-05-10', 'HU-05-11', 'HU-06-10', 'HU-06-11', 'HU-06-12', 'HU-06-14', 'HU-07-01', 'HU-07-02', 'HU-07-03', 'HU-07-04', 'HU-07-06', 'HU-07-07', 'HU-07-09', 'HU-07-11', 'HU-07-12', 'HU-07-13', 'HU-07-14', 'HU-07-17'] },
-  { number: 7, title: 'Selección avanzada', description: 'Entrevistas, verificaciones, independencia, ofertas y banco de talento.', phase: 'Después del MVP', epics: [2, 3] },
-  { number: 8, title: 'Operación de personal', description: 'Políticas, estructura, incorporaciones y expedientes con más profundidad.', phase: 'Después del MVP', epics: [1, 4, 5, 6, 7] },
-  { number: 9, title: 'Desempeño y reportes', description: 'Objetivos, evaluaciones, indicadores y satisfacción del personal.', phase: 'Después del MVP', epics: [8, 9] },
-  { number: 10, title: 'Tiempo e integraciones', description: 'Hojas de tiempo, calendario y automatizaciones de nómina.', phase: 'Después del MVP', epics: [10] },
+  { number: 1, title: 'Mi información y acceso', description: 'El empleado entra y consulta su expediente; permisos y edición básica del perfil.', phase: 'MVP', allocation: '2 nov · validar acceso y perfil', ids: ['MVP-01', 'MVP-02', 'HU-04-02', 'HU-04-04', 'HU-04-07', 'HU-04-13', 'HU-04-17', 'HU-06-01', 'HU-06-02'] },
+  { number: 2, title: 'Personas y configuración', description: 'Lista de empleados, alta, perfil laboral, vistas de gerencia y niveles de acceso.', phase: 'MVP', allocation: '2 nov · probar roles y altas', ids: ['MVP-03', 'HU-04-01', 'HU-04-03', 'HU-04-05', 'HU-04-12', 'HU-06-03', 'HU-06-04', 'HU-06-05', 'HU-06-07', 'HU-06-09'] },
+  { number: 3, title: 'Pago y nómina', description: 'Consulta de boletas propias y edición controlada de datos de nómina.', phase: 'MVP', allocation: '3 nov · pagos y permisos', ids: ['MVP-04', 'MVP-05', 'HU-06-06', 'HU-10-12', 'HU-10-13', 'HU-10-14', 'HU-10-15', 'HU-10-16', 'HU-10-17', 'HU-10-19'] },
+  { number: 4, title: 'Reclutamiento', description: 'Vacantes, formulario, página pública, postulaciones y seguimiento inicial.', phase: 'MVP', allocation: '4–5 y 16 nov · flujo y pruebas', ids: ['HU-02-01', 'HU-02-02', 'HU-02-03', 'HU-02-04', 'HU-02-05', 'HU-02-07', 'HU-02-08', 'HU-02-09', 'HU-02-11', 'HU-02-12', 'HU-02-13', 'HU-02-14', 'HU-02-15', 'HU-03-01', 'HU-03-02', 'HU-03-04'] },
+  { number: 5, title: 'Ausencias e inicio', description: 'Saldos, vacaciones, suspensiones, solicitudes, aprobaciones y panel personal.', phase: 'MVP', allocation: '5 y 17 nov · solicitudes', ids: ['HU-01-01', 'HU-01-02', 'HU-01-03', 'HU-01-04', 'HU-01-05', 'HU-01-06', 'HU-01-07', 'HU-01-08', 'HU-01-11', 'HU-01-16'] },
+  { number: 6, title: 'Expediente integral', description: 'Documentos, beneficios, capacitación y avance de incorporación.', phase: 'MVP', allocation: '6 y 18 nov · vistas y datos', ids: ['HU-05-01', 'HU-05-04', 'HU-05-05', 'HU-05-09', 'HU-05-10', 'HU-05-11', 'HU-06-10', 'HU-06-11', 'HU-06-12', 'HU-06-14', 'HU-07-01', 'HU-07-02', 'HU-07-03', 'HU-07-04', 'HU-07-06', 'HU-07-07', 'HU-07-09', 'HU-07-11', 'HU-07-12', 'HU-07-13', 'HU-07-14', 'HU-07-17'] },
+  { number: 7, title: 'Selección avanzada', description: 'Entrevistas, verificaciones, independencia, ofertas y banco de talento.', phase: 'Después del MVP', allocation: '19 nov · revisar backlog', epics: [2, 3] },
+  { number: 8, title: 'Operación de personal', description: 'Políticas, estructura, incorporaciones y expedientes con más profundidad.', phase: 'Después del MVP', allocation: '19 nov · revisar backlog', epics: [1, 4, 5, 6, 7] },
+  { number: 9, title: 'Desempeño y reportes', description: 'Objetivos, evaluaciones, indicadores y satisfacción del personal.', phase: 'Después del MVP', allocation: '19 nov · revisar backlog', epics: [8, 9] },
+  { number: 10, title: 'Tiempo e integraciones', description: 'Hojas de tiempo, calendario y automatizaciones de nómina.', phase: 'Después del MVP', allocation: '19 nov · revisar backlog', epics: [10] },
+];
+
+const dailyPlan: PlanDay[] = [
+  { date: 'Lun 2 nov', focus: 'Acceso y Personas', outcome: 'Revisar perfiles, permisos, altas y pruebas por rol.', sprints: '1–2' },
+  { date: 'Mar 3 nov', focus: 'Pago y nómina', outcome: 'Cerrar consulta de boletas, edición autorizada y pruebas de privacidad.', sprints: '3' },
+  { date: 'Mié 4 nov', focus: 'Reclutamiento', outcome: 'Vacantes y formulario público con datos de prueba.', sprints: '4' },
+  { date: 'Jue 5 nov', focus: 'Postulaciones y ausencias', outcome: 'Probar postulación y crear el recorrido básico de solicitud.', sprints: '4–5' },
+  { date: 'Vie 6 nov', focus: 'Demostración de avance', outcome: 'Presentar la mayoría de experiencias de usuario probadas y enumerar historias implementadas; mostrar primeras vistas del expediente integral.', sprints: '1–6', milestone: true },
+  { date: '9–13 nov', focus: 'Exámenes finales', outcome: 'Sin trabajo del proyecto ni tareas comprometidas.', sprints: 'Pausa' },
+  { date: 'Lun 16 nov', focus: 'Reclutamiento', outcome: 'Corregir el flujo y cerrar pruebas de vacantes y candidaturas.', sprints: '4' },
+  { date: 'Mar 17 nov', focus: 'Ausencias', outcome: 'Completar aprobaciones, saldos y estados con pruebas por rol.', sprints: '5' },
+  { date: 'Mié 18 nov', focus: 'Expediente integral', outcome: 'Integrar documentos, beneficios, capacitación e incorporación priorizados.', sprints: '6' },
+  { date: 'Jue 19 nov', focus: 'Pruebas y alcance final', outcome: 'Probar recorridos completos, corregir fallos críticos y dejar los sprints 7–10 como backlog documentado.', sprints: '1–10' },
+  { date: 'Vie 20 nov', focus: 'Entrega final', outcome: 'Congelar versión, validar demostración y entregar evidencia de historias terminadas y pendientes.', sprints: 'MVP', milestone: true },
 ];
 
 const accessSummary: AccessSummary[] = [
@@ -38,6 +53,7 @@ const accessSummary: AccessSummary[] = [
 export class App implements OnInit {
   readonly sprints = sprints;
   readonly accessSummary = accessSummary;
+  readonly dailyPlan = dailyPlan;
   readonly stories = signal<Story[]>([]);
   readonly selectedSprint = signal(1);
   readonly expandedStory = signal<string | null>(null);

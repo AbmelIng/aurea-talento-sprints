@@ -12,9 +12,20 @@
       <button class="sprint-card" type="button" [class.active]="selectedSprint() === sprint.number" [class.mvp]="sprint.phase === 'MVP'" [attr.aria-pressed]="selectedSprint() === sprint.number" (click)="selectSprint(sprint.number)">
         <span class="card-top"><span>SPRINT {{ sprint.number }}</span><small>{{ sprint.phase }}</small></span>
         <strong>{{ sprint.title }}</strong><span class="card-description">{{ sprint.description }}</span>
-        <span class="count-pill">{{ forSprint(sprint.number).length }} capacidades</span>
+        <span class="card-foot"><span class="count-pill">{{ forSprint(sprint.number).length }} capacidades</span><span class="time-pill">{{ sprint.allocation }}</span></span>
       </button>
     }
+  </section>
+  <section class="calendar-section" aria-labelledby="calendar-title">
+    <div class="calendar-heading"><span class="section-kicker">RUTA DE ENTREGA · NOVIEMBRE 2026</span><h2 id="calendar-title">Trabajo por día</h2><p>Primera revisión el viernes 6; entrega final el viernes 20. La semana del 9 al 13 se reserva para exámenes finales.</p></div>
+    <div class="calendar-grid">
+      @for (day of dailyPlan; track day.date) {
+        <article class="day-card" [class.milestone]="day.milestone" [class.pause]="day.sprints === 'Pausa'">
+          <div class="day-top"><strong>{{ day.date }}</strong><small>{{ day.sprints === 'Pausa' ? 'SIN TRABAJO' : day.sprints === 'MVP' ? 'ENTREGA MVP' : 'SPRINT ' + day.sprints }}</small></div>
+          <h3>{{ day.focus }}</h3><p>{{ day.outcome }}</p>
+        </article>
+      }
+    </div>
   </section>
   <section class="access-section" aria-labelledby="access-title">
     <div class="access-heading"><span class="section-kicker">ACCESO POR ROL</span><h2 id="access-title">Qué puede ver cada persona</h2><p>Las ventanas comparten el expediente; la información sensible depende del permiso asignado.</p></div>
@@ -34,7 +45,7 @@
             <span class="story-id">{{ story.id }}</span><span class="story-copy"><strong>{{ story.title }}</strong><span>{{ story.description }}</span></span><span class="expand-icon" aria-hidden="true">{{ expandedStory() === story.id ? '−' : '+' }}</span>
           </button>
           @if (expandedStory() === story.id) {
-            <div class="story-detail" [id]="'detail-' + story.id"><div class="detail-block"><h3>Criterios de aceptación propuestos</h3><ul>@for (criterion of story.criteria; track criterion) { <li>{{ criterion }}</li> }</ul></div><div class="detail-meta"><div><small>ORIGEN</small><b>{{ story.epic === 0 ? 'Precisión funcional del MVP' : 'EP-' + story.epic.toString().padStart(2, '0') }}</b></div><div><small>PRIORIDAD EN EL MAPPING</small><b>{{ story.delivery }}</b></div><div><small>PUNTOS / RESPONSABLE</small><b>Por estimar · Por asignar</b></div></div></div>
+            <div class="story-detail" [id]="'detail-' + story.id"><div class="detail-block"><h3>Criterios de aceptación propuestos</h3><ul>@for (criterion of story.criteria; track criterion) { <li>{{ criterion }}</li> }</ul></div><div class="detail-meta"><div><small>ORIGEN</small><b>{{ story.epic === 0 ? 'Precisión funcional del MVP' : 'EP-' + story.epic.toString().padStart(2, '0') }}</b></div><div><small>PRIORIDAD EN EL MAPPING</small><b>{{ story.delivery }}</b></div></div></div>
           }
         </article>
       }
